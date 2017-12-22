@@ -1,0 +1,47 @@
+#include "./minilibx_macos/mlx.h"
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct 		s_win
+{
+	void	*mlx;
+	void	*win;
+}					t_win;
+
+int		my_key_funct(int keycode, void *info)
+{
+	t_win *win_info;
+
+	win_info = info;
+	mlx_pixel_put(win_info->mlx, win_info->win, 300, 300, 0xff00ff);
+	printf("key event %d\n", keycode);
+	return (0);
+}
+
+int		main(int ac, char **av)
+{
+	t_win *win_info;
+	(void)ac;
+	(void)av;
+	int	x;
+	int	y;
+
+	win_info = malloc(sizeof(t_win) * 1);
+	win_info->mlx = mlx_init();
+	win_info->win = mlx_new_window(win_info->mlx, 2880, 1800, "42");
+	x = 30;
+	while (x < 150)
+	{
+		y  = 50;
+		while (y < 150)
+		{
+			mlx_pixel_put(win_info->mlx, win_info->win, x, y, 0x00FFFFFF); 
+			y++;
+		}
+		x++;
+	}
+	mlx_key_hook(win_info->win, my_key_funct, win_info->mlx);
+	mlx_loop(win_info->mlx);
+	return (0);
+}
