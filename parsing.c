@@ -16,24 +16,31 @@
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+#include <dirent.h>
 
 static int		*ft_converse_char_to_int(int *int_tab, char *line)
 {
-	char	**tmp;
-	int		i;
+	char		**tmp;
+	static int	nbr = 0;
+	int			i;
+	int			nbr_len;
 
 	tmp = NULL;
-	i = 0;
+	i = -1;
+	nbr_len = 0;
 	if (!(tmp = ft_strsplit(line, ' ')))
 		return (NULL);
-	if (!(int_tab = malloc(sizeof(int) * ft_tabsize(tmp) + 1)))
-		return (NULL);
-	int_tab[ft_tabsize(tmp)] = 2147483647;
-	while (tmp[i])
+	nbr_len = ft_tabsize(tmp);
+	if (!nbr)
+		nbr = nbr_len;
+	if (nbr != nbr_len || (!(int_tab = malloc(sizeof(int) * nbr_len + 1))))
 	{
-		int_tab[i] = ft_atoi(tmp[i]);
-		i++;
+		ft_memdel((void**)tmp);
+		return (NULL);
 	}
+	int_tab[nbr_len] = 2147483647;
+	while (tmp[++i])
+		int_tab[i] = ft_atoi(tmp[i]);
 	ft_memdel((void**)tmp);
 	return (int_tab);
 }
@@ -54,7 +61,11 @@ static int		**ft_parse_chartab(char **asci_tab)
 	while (asci_tab[i])
 	{
 		if (!(int_tab[i] = ft_converse_char_to_int(int_tab[i], asci_tab[i])))
+		{
+			ft_memdel((void**)int_tab);
 			return (NULL);
+		}
+		i++;
 	}
 	return (int_tab);
 }
@@ -73,7 +84,11 @@ static int		**ft_parse_lines(int fd)
 	map_asci_tab[0] = NULL;
 	while ((ret = get_next_line(fd, &tmp, '\n')) && ret != -1)
 	{
-		map_asci_tab = ft_tab_dup_add_free(map_asci_tab, tmp);
+		if (!(map_asci_tab = ft_tab_dup_add_free(map_asci_tab, tmp)))
+		{
+			ft_memdel((void**)&map_asci_tab);
+			ft_memdel((void**)&tmp);
+		}
 		ft_memdel((void**)&tmp);
 	}
 	if (ret == -1)
@@ -84,23 +99,46 @@ static int		**ft_parse_lines(int fd)
 
 int				**ft_parsing(char *arg)
 {
-	char	*file_path;
 	int		fd;
-	char	path[1024];
+	DIR		*test_dir;
 
 	fd = -1;
-	file_path = NULL;
-	if (!(getcwd(path, 1024)))
+	test_dir = NULL;
+	if ((test_dir = opendir(arg)))
+	{
+		ft_putstr("Pass a file not a directory to fdf.\n");
 		return (NULL);
-	if (!(file_path = ft_strjoin(path, "/")))
-		return (NULL);
-	if (!(file_path = ft_strjoinfree(&file_path, &arg, 'L')))
-		return (NULL);
+	}
 	if ((fd = open(arg, O_RDONLY)) == -1)
 	{
-		ft_putstr("Unable to open file passed in argument\n");
+		ft_putstr("Unable to open file passed in argument.\n");
 		strerror(errno);
 		return (NULL);
 	}
 	return (ft_parse_lines(fd));
+}
+
+int		main(int ac, char **argv)
+{
+	(void)ac;
+	int **tmp_tab;
+
+	tmp_tab = NULL;
+	tmp_tab = ft_parsing(argv[1]);
+	int x;
+	int y;
+	x = 0;
+	while (tmp_tab && tmp_tab[x])
+	{
+		y = 0;
+		while (tmp_tab[x][y] != 2147483647)
+		{
+			ft_putnbr(tmp_tab[x][y]);
+			ft_putchar(' ');
+			y++;
+		}
+		ft_putchar('\n');
+		x++;
+	}
+	return (0);
 }
