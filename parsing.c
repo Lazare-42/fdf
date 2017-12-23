@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "./libft/include/libft.h"
-#include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
@@ -35,6 +34,7 @@ static int		*ft_converse_char_to_int(int *int_tab, char *line)
 		nbr = nbr_len;
 	if (nbr != nbr_len || (!(int_tab = malloc(sizeof(int) * nbr_len + 1))))
 	{
+		ft_putstr("Invalid argument format.\n");
 		ft_memdel((void**)tmp);
 		return (NULL);
 	}
@@ -116,29 +116,4 @@ int				**ft_parsing(char *arg)
 		return (NULL);
 	}
 	return (ft_parse_lines(fd));
-}
-
-int		main(int ac, char **argv)
-{
-	(void)ac;
-	int **tmp_tab;
-
-	tmp_tab = NULL;
-	tmp_tab = ft_parsing(argv[1]);
-	int x;
-	int y;
-	x = 0;
-	while (tmp_tab && tmp_tab[x])
-	{
-		y = 0;
-		while (tmp_tab[x][y] != 2147483647)
-		{
-			ft_putnbr(tmp_tab[x][y]);
-			ft_putchar(' ');
-			y++;
-		}
-		ft_putchar('\n');
-		x++;
-	}
-	return (0);
 }
