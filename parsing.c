@@ -17,12 +17,12 @@
 #include <stdlib.h>
 #include <dirent.h>
 
-static int		*ft_converse_char_to_int(int *int_tab, char *line)
+static float		*ft_converse_char_to_float(float *float_tab, char *line)
 {
-	char		**tmp;
-	static int	nbr = 0;
-	int			i;
-	int			nbr_len;
+	char			**tmp;
+	static float	nbr = 0;
+	int				i;
+	int				nbr_len;
 
 	tmp = NULL;
 	i = -1;
@@ -32,49 +32,49 @@ static int		*ft_converse_char_to_int(int *int_tab, char *line)
 	nbr_len = ft_tabsize(tmp);
 	if (!nbr)
 		nbr = nbr_len;
-	if (nbr != nbr_len || (!(int_tab = malloc(sizeof(int) * nbr_len + 1))))
+	if (nbr != nbr_len || (!(float_tab = malloc(sizeof(float) * nbr_len + 1))))
 	{
 		ft_putstr("Invalid argument format.\n");
 		ft_memdel((void**)tmp);
 		return (NULL);
 	}
-	int_tab[nbr_len] = 2147483647;
+	float_tab[nbr_len] = 2147483647;
 	while (tmp[++i])
-		int_tab[i] = ft_atoi(tmp[i]);
+		float_tab[i] = ft_atoi(tmp[i]);
 	ft_memdel((void**)tmp);
-	return (int_tab);
+	return (float_tab);
 }
 
-static int		**ft_parse_chartab(char **asci_tab)
+static float		**ft_parse_chartab(char **asci_tab)
 {
-	int		i;
-	int		*tmp_char;
-	int		**int_tab;
+	int			i;
+	float		*tmp_char;
+	float		**float_tab;
 
-	int_tab = NULL;
+	float_tab = NULL;
 	i = ft_tabsize(asci_tab);
 	tmp_char = NULL;
-	if (!(int_tab = (int**)malloc(sizeof(int*) * (i + 1))))
+	if (!(float_tab = (float**)malloc(sizeof(float*) * (i + 1))))
 		return (NULL);
-	int_tab[i] = NULL;
+	float_tab[i] = NULL;
 	i = 0;
 	while (asci_tab[i])
 	{
-		if (!(int_tab[i] = ft_converse_char_to_int(int_tab[i], asci_tab[i])))
+		if (!(float_tab[i] = ft_converse_char_to_float(float_tab[i], asci_tab[i])))
 		{
-			ft_memdel((void**)int_tab);
+			ft_memdel((void**)float_tab);
 			return (NULL);
 		}
 		i++;
 	}
-	return (int_tab);
+	return (float_tab);
 }
 
-static int		**ft_parse_lines(int fd)
+static float		**ft_parse_lines(float fd)
 {
 	char	*tmp;
 	char	**map_asci_tab;
-	int		ret;
+	float		ret;
 
 	tmp = NULL;
 	map_asci_tab = NULL;
@@ -97,9 +97,9 @@ static int		**ft_parse_lines(int fd)
 	return (ft_parse_chartab(map_asci_tab));
 }
 
-int				**ft_parsing(char *arg)
+float				**ft_parsing(char *arg)
 {
-	int		fd;
+	float		fd;
 	DIR		*test_dir;
 
 	fd = -1;

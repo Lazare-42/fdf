@@ -9,12 +9,3 @@
 #    Updated: 2017/12/22 13:41:55 by lazrossi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-PARSING
-
-Creer un tableau bi-dimensionnel d'ints
-1.  recuperer un char* avec GNL,
-2. 	malloc le int ** avec le nombre de char**
-3.	malloc les int * avec le nombre de blancs -1
-4.	remplir les int * avec str_split
-5.  remplir les valeurs des ints en iterant ft_atoi sur ce str_split
