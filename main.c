@@ -10,17 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fdf.h"
+#include "./libft/include/libft.h"
 
 int		main(int ac, char **av)
 {
 	(void)ac;
 
-	long ***tab;
-
+	float	***tab;
 	tab = NULL;
+
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	k = 0;
+
 	if (av[1])
-		tab = ft_parsing(av[1])
+		tab = ft_parsing(av[1]);
 	else 
 		ft_putstr("Pass a file to FDF to launch the program\n");
+	if (tab)
+	{
+		while(tab[i])
+		{
+			j = 0;
+			while (tab[i][j])
+			{
+				ft_putnbr(tab[i][j][2]);
+				ft_putchar(' ');
+				j++;
+			}
+			i++;
+			ft_putchar('\n');
+		}
+	}
+	else
+		debug();
 	return (0);
 }

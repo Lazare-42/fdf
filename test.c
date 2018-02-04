@@ -39,6 +39,12 @@ int		main(int ac, char **av)
 	(void)av;
 	int	x;
 	int	y;
+	int pwd;
+
+	pwd = 0;
+
+	pwd = rand();
+	ft_putnbr(pwd);
 
 	win_info = malloc(sizeof(t_win) * 1);
 	win_info->mlx = mlx_init();

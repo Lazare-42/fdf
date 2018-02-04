@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoinfree_str_char.c                          :+:      :+:    :+:   */
+/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/17 16:18:54 by lazrossi          #+#    #+#             */
-/*   Updated: 2017/12/28 16:32:29 by lazrossi         ###   ########.fr       */
+/*   Created: 2017/12/29 19:34:45 by lazrossi          #+#    #+#             */
+/*   Updated: 2017/12/29 19:36:43 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/libft.h"
-#include <stdlib.h>
-
-char	*ft_strjoinfree_str_char(char **s1, char s2)
+int		ft_str_is_printable(char *str)
 {
-	char	*str;
-	int		len;
+	int i;
 
-	str = NULL;
-	len = 0;
-	if (*s1 || s2)
+	i = 0;
+	while (str[i])
 	{
-		len = ft_strlen(*s1) + 1;
-		if (!(str = ft_strnew(len)))
-			return (NULL);
-		if (!(ft_strcpy(str, *s1)))
-			return (NULL);
-		str[len - 1] = s2;
-		if (*s1)
-			ft_memdel((void*)s1);
-		return (str);
+		if (str[i] <= 31)
+			return (0);
+		i++;
 	}
-	return (NULL);
+	return (1);
 }
