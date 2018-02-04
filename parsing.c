@@ -17,17 +17,33 @@
 #include <stdlib.h>
 #include <dirent.h>
 
+static float		**converse_final(float **float_tab, char **tmp, int y)
+{
+	int				x;
+	int				i;
+
+	x = 0;
+	i = -1;
+	while (tmp[++i])
+	{
+		if (!(float_tab[i] = (float*)malloc(sizeof(float) * 3)))
+			return (NULL);
+		float_tab[i][0] = x;
+		float_tab[i][1] = y;
+		float_tab[i][2] = ft_atoi(tmp[i]);
+		x++;
+	}
+	ft_memdel((void**)tmp);
+	return (float_tab);
+}
+
 static float		**ft_converse_char_to_float(float **float_tab, char *line, int y_size)
 {
 	char			**tmp;
 	static float	nbr = 0;
-	int				x;
-	int				i;
 	int				nbr_len;
 
 	tmp = NULL;
-	x = 0;
-	i = -1;
 	nbr_len = 0;
 	if (!(tmp = ft_strsplit(line, ' ')))
 		return (NULL);
@@ -40,24 +56,8 @@ static float		**ft_converse_char_to_float(float **float_tab, char *line, int y_s
 		ft_memdel((void**)tmp);
 		return (NULL);
 	}
-
-
-
-
-
-
 	float_tab[nbr_len] = NULL;
-	while (tmp[++i])
-	{
-		float_tab[i] = NULL;
-		if (!(float_tab[i] = (float*)malloc(sizeof(float) * 3)))
-			return (NULL);
-		float_tab[i][0] = x;
-		float_tab[i][1] = y_size;
-		float_tab[i][2] = ft_atoi(tmp[i]);
-	}
-	ft_memdel((void**)tmp);
-	return (float_tab);
+	return (converse_final(float_tab, tmp, y_size));
 }
 
 static float		***ft_parse_chartab(char **asci_tab)
@@ -69,7 +69,7 @@ static float		***ft_parse_chartab(char **asci_tab)
 
 	float_tab = NULL;
 	i = ft_tabsize(asci_tab);
-	y_size = i;
+	y_size = i - 1;
 	tmp_char = NULL;
 	if (!(float_tab = (float***)malloc(sizeof(float**) * (i + 1))))
 		return (NULL);

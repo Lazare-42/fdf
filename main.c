@@ -46,7 +46,5 @@ int		main(int ac, char **av)
 			ft_putchar('\n');
 		}
 	}
-	else
-		debug();
 	return (0);
 }
