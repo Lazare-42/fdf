@@ -109,4 +109,5 @@ char				*ft_strdupfrom_free(const char **str, int from);
 char				**ft_tab_replacestr(char ***tab, char **str, char *cmp);
 int					int_ft_putchar(int c);
 void				debug();
+int					ft_put_fatal_error(char *str);
 #endif

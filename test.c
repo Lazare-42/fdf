@@ -50,16 +50,6 @@ int		main(int ac, char **av)
 	win_info->mlx = mlx_init();
 	win_info->win = mlx_new_window(win_info->mlx, 2880, 1800, "42");
 	x = 30;
-	while (x < 150)
-	{
-		y  = 50;
-		while (y < 150)
-		{
-			mlx_pixel_put(win_info->mlx, win_info->win, x, y, 0x00FFFFFF); 
-			y++;
-		}
-		x++;
-	}
 	mlx_key_hook(win_info->win, my_key_funct, win_info->mlx);
 	mlx_loop(win_info->mlx);
 	return (0);
