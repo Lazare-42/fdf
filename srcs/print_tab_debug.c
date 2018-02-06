@@ -1,5 +1,5 @@
-#include "./fdf.h"
-#include "./libft/include/libft.h"
+#include "../includes/fdf.h"
+#include "../libft/include/libft.h"
 
 void	print_tab_debug(float ***TABTAB)
 {
@@ -7,6 +7,7 @@ void	print_tab_debug(float ***TABTAB)
 	int j;
 
 	i = 0;
+	ft_putchar('\n');
 	if (TABTAB)
 	{
 		while(TABTAB[i])
@@ -22,6 +23,7 @@ void	print_tab_debug(float ***TABTAB)
 			ft_putchar('\n');
 		}
 		i = 0;
+			ft_putchar('\n');
 		while(TABTAB[i])
 		{
 			j = 0;
@@ -35,6 +37,7 @@ void	print_tab_debug(float ***TABTAB)
 			ft_putchar('\n');
 		}
 		i = 0;
+		ft_putchar('\n');
 		while(TABTAB[i])
 		{
 			j = 0;

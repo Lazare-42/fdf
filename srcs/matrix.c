@@ -1,5 +1,5 @@
-#include "fdf.h"
-#include "./libft/include/libft.h"
+#include "../includes/fdf.h"
+#include "../libft/include/libft.h"
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
@@ -27,6 +27,10 @@ float	*matrix_multiplication(float *tab)
 	tab[0] = g_rotate_matrix[2][0][0] * tab[0] + g_rotate_matrix[2][0][1] * tab[1] + g_rotate_matrix[2][0][2] * tab[2];
 	tab[1] = g_rotate_matrix[2][1][0] * tab[0] + g_rotate_matrix[2][1][1] * tab[1] + g_rotate_matrix[2][1][2] * tab[2];
 	tab[2] = g_rotate_matrix[2][2][0] * tab[0] + g_rotate_matrix[2][2][1] * tab[1] + g_rotate_matrix[2][2][2] * tab[2];
+
+//	tab[0] = tab[0] / tab[2];
+//	tab[1] = tab[1] / tab[2];
+
 	return (tab);
 }
 

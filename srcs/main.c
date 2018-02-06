@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minilibx_macos/mlx.h"
-#include "./libft/include/libft.h"
+#include "../minilibx_macos/mlx.h"
+#include "../libft/include/libft.h"
 #include <unistd.h>
-#include "./fdf.h"
+#include "../includes/fdf.h"
 #include <stdlib.h>
 
 static float ***g_tab;
@@ -24,12 +24,11 @@ int		my_key_funct(int keycode, void *info)
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
-	g_tab = table_transform_handler(g_tab, X_ROTATE_UP);
+	g_tab = table_transform_handler(g_tab, keycode);
 	print_tab_debug(g_tab);
 
-	keycode++;
-
 	mlx = info;
+	mlx++;
 	return (0);
 }
 
@@ -44,8 +43,8 @@ int		main(int ac, char **av)
 		g_tab = ft_parsing(av[1]);
 	else 
 		return(ft_put_fatal_error(("Pass a file to FDF to launch program\n")));
+	//g_tab = first_camera_move(g_tab);
 	print_tab_debug(g_tab);
-	g_tab = first_camera_move(g_tab);
 	if (!(mlx = malloc(sizeof(t_mlx) * 1)))
 		return(ft_put_fatal_error(("Malloc error\n")));
 		
