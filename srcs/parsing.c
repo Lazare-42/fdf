@@ -29,8 +29,8 @@ static float		**converse_final(float **float_tab, char **tmp, int y)
 		if (!(float_tab[i] = (float*)malloc(sizeof(float) * 3)))
 			return (NULL);
 		float_tab[i][0] = x;
-		float_tab[i][1] = y;
-		float_tab[i][2] = ft_atoi(tmp[i]);
+		float_tab[i][1] = ft_atoi(tmp[i]);
+		float_tab[i][2] = y;
 		x++;
 	}
 	ft_memdel((void**)tmp);

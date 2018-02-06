@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   test->c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lazrossi <marvin@42->fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 12:07:08 by lazrossi          #+#    #+#             */
-/*   Updated: 2017/12/22 12:07:35 by lazrossi         ###   ########.fr       */
+/*   Updated: 2017/12/22 12:07:35 by lazrossi         ###   ########->fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int		my_key_funct(int keycode, void *info)
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
-	g_tab = table_transform_handler(g_tab, keycode);
-	print_tab_debug(g_tab);
+	table_transform_handler(g_tab, keycode);
 
 	mlx = info;
 	mlx++;
@@ -43,18 +42,44 @@ int		main(int ac, char **av)
 		g_tab = ft_parsing(av[1]);
 	else 
 		return(ft_put_fatal_error(("Pass a file to FDF to launch program\n")));
-	//g_tab = first_camera_move(g_tab);
-	print_tab_debug(g_tab);
-	if (!(mlx = malloc(sizeof(t_mlx) * 1)))
-		return(ft_put_fatal_error(("Malloc error\n")));
-		
+	g_tab = first_camera_move(g_tab);
+	if (!(mlx = malloc(sizeof(mlx) * 1)))
+		return (0);
+
+
+
+
+
+
+
+
+
+
 	mlx->mlx = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx, X_SIZE, Y_SIZE, "42");
 	mlx->image = mlx_new_image(mlx->mlx, X_SIZE, Y_SIZE);
 
+	int		bpp;
+	int		endian;
+	int		size_line;
+	mlx->screen_data = (int*)mlx_get_data_addr(mlx->image, &bpp, &size_line, &endian);
 
-	if (!(mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image, 0, 0)))
-		return ft_put_fatal_error("wft");
+	int i;
+	int j;
+	i = 0;
+	j = 0;
+	while (g_tab[i])
+	{
+		j = 0;
+		while(g_tab[i][j])
+		{
+			put_to_screen_string(g_tab[i][j], &(mlx->screen_data));
+			j++;
+		}
+		i++;
+	}
+	ft_putchar('\n');
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image, 0, 0);
 
 	mlx_key_hook(mlx->win, my_key_funct, mlx->mlx);
 	mlx_loop(mlx->mlx);

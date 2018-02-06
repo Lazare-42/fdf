@@ -28,9 +28,6 @@ float	*matrix_multiplication(float *tab)
 	tab[1] = g_rotate_matrix[2][1][0] * tab[0] + g_rotate_matrix[2][1][1] * tab[1] + g_rotate_matrix[2][1][2] * tab[2];
 	tab[2] = g_rotate_matrix[2][2][0] * tab[0] + g_rotate_matrix[2][2][1] * tab[1] + g_rotate_matrix[2][2][2] * tab[2];
 
-//	tab[0] = tab[0] / tab[2];
-//	tab[1] = tab[1] / tab[2];
-
 	return (tab);
 }
 
@@ -111,14 +108,13 @@ void	fillup_rotation_matrix(int input_operation)
 	}
 	if (first || input_operation == X_ROTATE_DOWN || input_operation == X_ROTATE_UP)
 	{
-		debug();
 		g_rotate_matrix[2][0][0] = 1;
 		g_rotate_matrix[2][1][1] = g_cos_sinus[0];
 		g_rotate_matrix[2][1][2] = -g_cos_sinus[1];
-		g_rotate_matrix[2][1][1] = g_cos_sinus[1];
+		g_rotate_matrix[2][2][1] = g_cos_sinus[1];
 		g_rotate_matrix[2][2][2] = g_cos_sinus[0];
 	}
-	first = 1;
+	first = 0;
 }
 
 float	***table_transform_handler(float ***tab, int input_operation)
@@ -137,6 +133,7 @@ float	***table_transform_handler(float ***tab, int input_operation)
 		input_operation == Y_ROTATE_DOWN || input_operation == Y_ROTATE_UP ||
 		input_operation == Z_ROTATE_DOWN || input_operation == Z_ROTATE_UP)
 		modify_sin_cos(input_operation);
+	print_tab_debug(tab);
 	fillup_rotation_matrix(input_operation);
 	while (tab[i])
 	{

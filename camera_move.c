@@ -29,35 +29,20 @@ float	***first_camera_move(float ***tab)
 	int j;
 	int x_setback;
 	int z_setback;
-	int y_setback;
 
-	i = -1;
-	x_setback = 0; 
-	z_setback = 0;
-	y_setback = 0;
-	while (tab[++i])
+	i = 0;
+	x_setback = X_SIZE / 3; 
+	z_setback = Y_SIZE / 3;
+	while (tab[i])
 	{
-		j = -1;
-		while (tab[i][++j])
+		j = 0;
+		while (tab[i][j])
 		{
-			(tab[i][j][0] > x_setback) ? x_setback = tab[i][j][0]: 0;
-			(tab[i][j][1] > y_setback) ? y_setback = tab[i][j][1]: 0;
-			(tab[i][j][2] > z_setback) ? z_setback = tab[i][j][2]: 0;
+			tab[i][j][0] -= x_setback;
+			tab[i][j][2] -= z_setback;
+			j++;
 		}
-	}
-	i = -1;
-	x_setback++;
-	z_setback++;
-	y_setback *= 3;
-	while (tab[++i])
-	{
-		j = -1;
-		while (tab[i][++j])
-		{
-			tab[i][j][0] += x_setback;
-			tab[i][j][1] += y_setback;
-			tab[i][j][2] += z_setback;
-		}
+		i++;
 	}
 	return (tab);
 }
