@@ -1,17 +1,33 @@
 #include "../includes/fdf.h"
 #include "../libft/include/libft.h"
 
-
-int put_to_screen_string(float *tab, int **screen)
+void	draw_line(float *from, float *to, int **screen)
 {
-	static int l = 30;
-	ft_putnbr(tab[0]);
-	ft_putchar(' ');
-	ft_putnbr(tab[1]);
-	ft_putchar(' ');
-	ft_putchar('\n');
+	float dx;
+	float dy;
+	float D;
+	float y;
+	int x;
 
-	(*screen)[(int)tab[0] + (int)tab[1] * X_SIZE] = 0xFFFFFF;
-	l++;
-	return (0);
+	dx = from[0] - to[0];
+	dy = from[1] - to[1];
+	x = from[0];
+	y = from[1];
+	D = 2 * dy - dx;
+	while (x < to[0])
+	{
+		(*screen)[(int)x + (int)y * X_SIZE] = 0xFEFFFF;
+		if (D > 0)
+		{
+			y++;
+			D -= 2 * dx;
+		}
+		D *= 2 * dy;
+	}
+
+}
+
+void put_to_screen_string(float *tab, int **screen)
+{
+	(*screen)[(int)tab[0] + (int)tab[1] * X_SIZE] = 0xFEFFFF;
 }

@@ -20,9 +20,6 @@ typedef struct 		s_mlx
 	void	*win;
 	void	*image;
 	int		*screen_data;
-	int		bpp;
-	int		endian;
-	int		size_line;
 }					t_mlx;
 
 float				***ft_parsing(char *arg);
@@ -32,6 +29,7 @@ float				***create_rotation_matrix(float ***g_rotate_matrix);
 float				***table_transform_handler(float ***tab,
 		int input_operation);
 float				***first_camera_move(float ***tab);
-int					put_to_screen_string(float *tab, int **screen);
+void				put_to_screen_string(float *tab, int **screen);
+void				draw_line(float *from, float *to, int **screen);
 
 #endif
