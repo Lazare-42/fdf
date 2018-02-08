@@ -28,7 +28,7 @@ double				***camera_move(double ***tab, int input_operation);
 double				***create_rotation_matrix(double ***g_rotate_matrix);
 double				***table_transform_handler(double ***tab,
 		int input_operation);
-double				***first_camera_move(double ***tab);
+double				***first_camera_move(double ***tab, int max_x, int max_z, int max_y);
 void				put_to_screen_string(double *tab, int **screen);
 void				draw_line(double *from, double *to, int **screen);
 double				***scale(double ***tab, int max_x, int max_y, int max_z);

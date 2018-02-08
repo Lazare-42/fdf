@@ -17,12 +17,14 @@
 #include <string.h>
 #include <stdlib.h>
 #include <dirent.h>
+#include <math.h>
+#include <stdio.h>
 
 static int g_max_z = 0;
 static int g_max_y = 0;
 static int g_max_x = 0;
 
-static double		**converse_final(double **double_tab, char **tmp, int y)
+static double		**converse_final(double **double_tab, char **tmp, int z)
 {
 	int				x;
 	int				i;
@@ -34,9 +36,21 @@ static double		**converse_final(double **double_tab, char **tmp, int y)
 		if (!(double_tab[i] = (double*)malloc(sizeof(double) * 3)))
 			return (NULL);
 		double_tab[i][0] = x;
-		double_tab[i][1] = ft_atoi(tmp[i]);
-		(double_tab[i][1] > g_max_y ) ? g_max_y = double_tab[i][1] : 0;
-		double_tab[i][2] = y;
+		double_tab[i][1] = (z + 1) ;
+		double_tab[i][2] = ft_atoi(tmp[i]);
+		(double_tab[i][2] > g_max_y ) ? g_max_y = double_tab[i][2] : 0;
+
+		//put to screen space by dividing by z
+		double_tab[i][0] /= double_tab[i][1];
+		double_tab[i][2] /= double_tab[i][1];
+	
+		//adapt to screen by adapting to normalized device coordinates , from 0 to 1
+		double_tab[i][0] = (double_tab[i][0] + X_SIZE / 2) / X_SIZE;
+		double_tab[i][2] = (double_tab[i][2] + Y_SIZE / 2) / Y_SIZE;
+
+		//adapt to screen by adapting to raster space
+		double_tab[i][0] *= X_SIZE; 
+		double_tab[i][2] *= Y_SIZE;
 		x++;
 	}
 	g_max_x = x;
@@ -44,7 +58,7 @@ static double		**converse_final(double **double_tab, char **tmp, int y)
 	return (double_tab);
 }
 
-static double		**ft_converse_string_to_double(double **double_tab, char *line, int y_size)
+static double		**ft_converse_string_to_double(double **double_tab, char *line, int z_size)
 {
 	char			**tmp;
 	static double	nbr = 0;
@@ -64,19 +78,19 @@ static double		**ft_converse_string_to_double(double **double_tab, char *line, i
 		return (NULL);
 	}
 	double_tab[nbr_len] = NULL;
-	return (converse_final(double_tab, tmp, y_size));
+	return (converse_final(double_tab, tmp, z_size));
 }
 
 static double		***ft_parse_chartab(char **asci_tab)
 {
 	int			i;
-	int			y_size;
+	int			z_size;
 	double		*tmp_char;
 	double		***double_tab;
 
 	double_tab = NULL;
 	i = ft_tabsize(asci_tab);
-	y_size = i - 1;
+	z_size = i - 1;
 	tmp_char = NULL;
 	if (!(double_tab = (double***)malloc(sizeof(double**) * (i + 1))))
 		return (NULL);
@@ -84,12 +98,12 @@ static double		***ft_parse_chartab(char **asci_tab)
 	i = 0;
 	while (asci_tab[i])
 	{
-		if (!(double_tab[i] = ft_converse_string_to_double(double_tab[i], asci_tab[i], y_size)))
+		if (!(double_tab[i] = ft_converse_string_to_double(double_tab[i], asci_tab[i], z_size)))
 		{
 			ft_memdel((void**)double_tab);
 			return (NULL);
 		}
-		y_size--;
+		z_size--;
 		i++;
 	}
 	g_max_z = i;
@@ -141,5 +155,5 @@ double				***ft_parsing(char *arg)
 		strerror(errno);
 		return (NULL);
 	}
-	return (scale(ft_parse_lines(fd), g_max_x, g_max_y, g_max_z));
+	return (ft_parse_lines(fd));
 }

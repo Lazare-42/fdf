@@ -14,7 +14,7 @@ double	***scale(double ***tab, int max_x, int max_y, int max_z)
 
 	i = -1;
 	scale_x = X_SIZE / max_x;
-	scale_y = Y_SIZE  / max_z;
+	scale_y = Y_SIZE  / max_y;
 	scale_z = Y_SIZE / 6 / max_y;
 	screen_adjust_x = X_SIZE / 4;
 	screen_adjust_y = Y_SIZE / 4;
@@ -25,18 +25,12 @@ double	***scale(double ***tab, int max_x, int max_y, int max_z)
 		{
 			if ((i + 1) <= max_z / 2 && (1 + j) <= max_x / 2)
 			{
-				debug();
-				tab[i][j][1] = tab[-1 + max_z - i ][-1 + max_x - j][1];
+				tab[i][j][2] = tab[-1 + max_z - i ][-1 + max_x - j][2];
 			}
-			if (tab[i][j][1])
-			{
-			tab[i][j][0] /= tab[i][j][1];
-			tab[i][j][2] /= tab[i][j][1];
-			}
-			tab[i][j][0] *= scale_x;
-			tab[i][j][0] += screen_adjust_x;
-			tab[i][j][2] *= scale_y;
-			tab[i][j][2] += screen_adjust_y;
+//			tab[i][j][0] *= scale_x;
+//			tab[i][j][0] += screen_adjust_x;
+//			tab[i][j][1] *= scale_y;
+//			tab[i][j][1] += screen_adjust_y;
 		}
 	}
 	return (tab);

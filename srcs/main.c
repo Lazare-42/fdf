@@ -58,12 +58,10 @@ int		main(int ac, char **av)
 		g_tab = ft_parsing(av[1]);
 	else 
 		return(ft_put_fatal_error(("Pass a file to FDF to launch program\n")));
-//	g_tab = first_camera_move(g_tab);
 
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, X_SIZE, Y_SIZE, "FDF");
 	mlx.image = mlx_new_image(mlx.mlx, X_SIZE, Y_SIZE);
-	print_tab_debug(g_tab);
 
 	mlx.screen_data = (int*)mlx_get_data_addr(mlx.image, &bpp, &size_line, &endian);
 
@@ -71,6 +69,7 @@ int		main(int ac, char **av)
 	int j;
 	i = 0;
 	j = 0;
+	print_tab_debug(g_tab);
 	while (g_tab[i])
 	{
 		j = 0;

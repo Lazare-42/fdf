@@ -1,4 +1,5 @@
 #include "fdf.h"
+#include "../libft/include/libft.h"
 
 double	***camera_move(double ***tab, int input_operation)
 {
@@ -23,39 +24,21 @@ double	***camera_move(double ***tab, int input_operation)
 	return (tab);
 }
 
-double	***first_camera_move(double ***tab)
+double	***first_camera_move(double ***tab, int max_x, int max_y, int max_z)
 {
 	int i;
 	int j;
-	int x_setback;
-	int z_setback;
-	int y_setback;
 
 	i = -1;
-	x_setback = 0; 
-	z_setback = 0;
-	y_setback = 0;
 	while (tab[++i])
 	{
 		j = -1;
-		while (tab[i][++j])
+		while(tab[++j])
 		{
-			(tab[i][j][0] > x_setback) ? x_setback = tab[i][j][0]: 0;
-			(tab[i][j][1] > y_setback) ? y_setback = tab[i][j][1]: 0;
-			(tab[i][j][2] > z_setback) ? z_setback = tab[i][j][2]: 0;
-		}
-	}
-	i = -1;
-	x_setback++;
-	z_setback++;
-	y_setback *= 3;
-	while (tab[++i])
-	{
-		j = -1;
-		while (tab[i][++j])
-		{
-			tab[i][j][0] += x_setback;
-			tab[i][j][1] += y_setback;
+			debug();
+			tab[0] += max_x * 4;
+			tab[1] += max_y * 4;
+			tab[2] += max_z * 4;
 		}
 	}
 	return (tab);

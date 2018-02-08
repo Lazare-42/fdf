@@ -26,12 +26,12 @@ void	draw_line(double *from, double *to, int **screen)
 	}
 
 }
+#include <stdio.h>
 
 void put_to_screen_string(double *tab, int **screen)
 {
 	int where_to;
 
-	where_to = 0;
-	where_to = (int)tab[0] + (tab[2]) * X_SIZE;
+	where_to = (int)tab[0] + (tab[2]) * Y_SIZE;
 	(*screen)[where_to] = 0xFEFFFF;
 }
