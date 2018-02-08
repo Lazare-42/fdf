@@ -7,6 +7,7 @@ SOURCES = ./camera_move.c \
 		  ./print_tab_debug.c \
 		  ./tab_malloc.c \
 		  ./screen_management.c \
+		  ./scale.c \
 
 
 LIBDIR = libft

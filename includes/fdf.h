@@ -31,5 +31,6 @@ float				***table_transform_handler(float ***tab,
 float				***first_camera_move(float ***tab);
 void				put_to_screen_string(float *tab, int **screen);
 void				draw_line(float *from, float *to, int **screen);
+float				***scale(float ***tab, int max_x, int max_y, int max_z);
 
 #endif

@@ -18,6 +18,10 @@
 #include <stdlib.h>
 #include <dirent.h>
 
+static int g_max_z = 0;
+static int g_max_y = 0;
+static int g_max_x = 0;
+
 static float		**converse_final(float **float_tab, char **tmp, int y)
 {
 	int				x;
@@ -29,11 +33,13 @@ static float		**converse_final(float **float_tab, char **tmp, int y)
 	{
 		if (!(float_tab[i] = (float*)malloc(sizeof(float) * 3)))
 			return (NULL);
-		float_tab[i][0] = x * 20;
-		float_tab[i][1] = ft_atoi(tmp[i]) * 20;
+		float_tab[i][0] = x;
+		float_tab[i][1] = ft_atoi(tmp[i]);
+		(float_tab[i][1] > g_max_y ) ? g_max_y = float_tab[i][1] : 0;
 		float_tab[i][2] = y;
 		x++;
 	}
+	g_max_x = x;
 	ft_memdel((void**)tmp);
 	return (float_tab);
 }
@@ -86,6 +92,7 @@ static float		***ft_parse_chartab(char **asci_tab)
 		y_size--;
 		i++;
 	}
+	g_max_z = i;
 	return (float_tab);
 }
 
@@ -134,5 +141,5 @@ float				***ft_parsing(char *arg)
 		strerror(errno);
 		return (NULL);
 	}
-	return (ft_parse_lines(fd));
+	return (scale(ft_parse_lines(fd), g_max_x, g_max_y, g_max_z));
 }

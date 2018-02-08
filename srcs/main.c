@@ -58,7 +58,7 @@ int		main(int ac, char **av)
 		g_tab = ft_parsing(av[1]);
 	else 
 		return(ft_put_fatal_error(("Pass a file to FDF to launch program\n")));
-	g_tab = first_camera_move(g_tab);
+//	g_tab = first_camera_move(g_tab);
 
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, X_SIZE, Y_SIZE, "FDF");
@@ -77,8 +77,8 @@ int		main(int ac, char **av)
 		while(g_tab[i][j])
 		{
 			put_to_screen_string(g_tab[i][j], &(mlx.screen_data));
-			if (g_tab[i+1])
-				draw_line(g_tab[i][j], g_tab[i+1][j], &(mlx.screen_data));
+	//		if (g_tab[i+1])
+	//			draw_line(g_tab[i][j], g_tab[i+1][j], &(mlx.screen_data));
 			j++;
 		}
 		i++;

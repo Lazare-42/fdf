@@ -32,13 +32,6 @@ void put_to_screen_string(float *tab, int **screen)
 	int where_to;
 
 	where_to = 0;
-	if (tab[2])
-	{
-		tab[0] = tab[0] / tab[2];
-		tab[1] = tab[1] / tab[2];
-	}
-	where_to = (int)tab[0] + (tab[1]) * X_SIZE;
-	ft_putnbr(tab[0]);
-	ft_putchar(' ');
+	where_to = (int)tab[0] + (tab[2]) * X_SIZE;
 	(*screen)[where_to] = 0xFEFFFF;
 }
