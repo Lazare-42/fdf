@@ -16,10 +16,10 @@
 
 typedef struct 		s_mlx
 {
-	void	*mlx;
-	void	*win;
-	void	*image;
-	int		*screen_data;
+	void			*mlx;
+	void			*win;
+	void			*image;
+	int				*screen_data;
 }					t_mlx;
 
 float				***ft_parsing(char *arg);

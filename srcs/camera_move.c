@@ -56,7 +56,6 @@ float	***first_camera_move(float ***tab)
 		{
 			tab[i][j][0] += x_setback;
 			tab[i][j][1] += y_setback;
-			tab[i][j][2] += z_setback;
 		}
 	}
 	return (tab);

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../libft/include/libft.h"
+#include "../includes/fdf.h"
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
@@ -28,8 +29,8 @@ static float		**converse_final(float **float_tab, char **tmp, int y)
 	{
 		if (!(float_tab[i] = (float*)malloc(sizeof(float) * 3)))
 			return (NULL);
-		float_tab[i][0] = x;
-		float_tab[i][1] = ft_atoi(tmp[i]);
+		float_tab[i][0] = x * 20;
+		float_tab[i][1] = ft_atoi(tmp[i]) * 20;
 		float_tab[i][2] = y;
 		x++;
 	}
@@ -37,7 +38,7 @@ static float		**converse_final(float **float_tab, char **tmp, int y)
 	return (float_tab);
 }
 
-static float		**ft_converse_char_to_float(float **float_tab, char *line, int y_size)
+static float		**ft_converse_string_to_float(float **float_tab, char *line, int y_size)
 {
 	char			**tmp;
 	static float	nbr = 0;
@@ -77,7 +78,7 @@ static float		***ft_parse_chartab(char **asci_tab)
 	i = 0;
 	while (asci_tab[i])
 	{
-		if (!(float_tab[i] = ft_converse_char_to_float(float_tab[i], asci_tab[i], y_size)))
+		if (!(float_tab[i] = ft_converse_string_to_float(float_tab[i], asci_tab[i], y_size)))
 		{
 			ft_memdel((void**)float_tab);
 			return (NULL);
