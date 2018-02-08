@@ -1,40 +1,43 @@
 #include "../includes/fdf.h"
 #include "../libft/include/libft.h"
 
-float	***scale(float ***tab, int max_x, int max_y, int max_z)
+
+double	***scale(double ***tab, int max_x, int max_y, int max_z)
 {
-	print_tab_debug(tab);
 	int i;
 	int j;
-	
-	i = 0;
-	ft_putnbr(max_x);
-	ft_putchar(' ');
-	ft_putnbr(max_y);
-	ft_putchar(' ');
-	ft_putchar('\n');
+	int scale_x;
+	int scale_y;
+	int scale_z;
+	int	screen_adjust_x;
+	int	screen_adjust_y;
 
-	while (tab[i])
+	i = -1;
+	scale_x = X_SIZE / max_x;
+	scale_y = Y_SIZE  / max_z;
+	scale_z = Y_SIZE / 6 / max_y;
+	screen_adjust_x = X_SIZE / 4;
+	screen_adjust_y = Y_SIZE / 4;
+	while (tab[++i])
 	{
-		int first;
-		j = 0;
-		first = 1;
-		while (tab[i][j])
+		j = -1;
+		while (tab[i][++j])
 		{
-			if (first)
+			if ((i + 1) <= max_z / 2 && (1 + j) <= max_x / 2)
 			{
-				ft_putnbr(tab[i][j][2]);
-				ft_putchar('\n');
+				debug();
+				tab[i][j][1] = tab[-1 + max_z - i ][-1 + max_x - j][1];
 			}
-			first = 0;
-			tab[i][j][0] *= (X_SIZE / 3 ) / max_x;
-			tab[i][j][0] += X_SIZE / 3;
-			tab[i][j][2] *= (Y_SIZE / 3) / max_z;
-			tab[i][j][2] += Y_SIZE / 3;
-			j++;
+			if (tab[i][j][1])
+			{
+			tab[i][j][0] /= tab[i][j][1];
+			tab[i][j][2] /= tab[i][j][1];
+			}
+			tab[i][j][0] *= scale_x;
+			tab[i][j][0] += screen_adjust_x;
+			tab[i][j][2] *= scale_y;
+			tab[i][j][2] += screen_adjust_y;
 		}
-		i++;
 	}
-	(void)max_y;
 	return (tab);
 }

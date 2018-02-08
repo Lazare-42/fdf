@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-float	***camera_move(float ***tab, int input_operation)
+double	***camera_move(double ***tab, int input_operation)
 {
 	int i;
 	int j;
@@ -23,7 +23,7 @@ float	***camera_move(float ***tab, int input_operation)
 	return (tab);
 }
 
-float	***first_camera_move(float ***tab)
+double	***first_camera_move(double ***tab)
 {
 	int i;
 	int j;

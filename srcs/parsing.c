@@ -22,7 +22,7 @@ static int g_max_z = 0;
 static int g_max_y = 0;
 static int g_max_x = 0;
 
-static float		**converse_final(float **float_tab, char **tmp, int y)
+static double		**converse_final(double **double_tab, char **tmp, int y)
 {
 	int				x;
 	int				i;
@@ -31,23 +31,23 @@ static float		**converse_final(float **float_tab, char **tmp, int y)
 	i = -1;
 	while (tmp[++i])
 	{
-		if (!(float_tab[i] = (float*)malloc(sizeof(float) * 3)))
+		if (!(double_tab[i] = (double*)malloc(sizeof(double) * 3)))
 			return (NULL);
-		float_tab[i][0] = x;
-		float_tab[i][1] = ft_atoi(tmp[i]);
-		(float_tab[i][1] > g_max_y ) ? g_max_y = float_tab[i][1] : 0;
-		float_tab[i][2] = y;
+		double_tab[i][0] = x;
+		double_tab[i][1] = ft_atoi(tmp[i]);
+		(double_tab[i][1] > g_max_y ) ? g_max_y = double_tab[i][1] : 0;
+		double_tab[i][2] = y;
 		x++;
 	}
 	g_max_x = x;
 	ft_memdel((void**)tmp);
-	return (float_tab);
+	return (double_tab);
 }
 
-static float		**ft_converse_string_to_float(float **float_tab, char *line, int y_size)
+static double		**ft_converse_string_to_double(double **double_tab, char *line, int y_size)
 {
 	char			**tmp;
-	static float	nbr = 0;
+	static double	nbr = 0;
 	int				nbr_len;
 
 	tmp = NULL;
@@ -57,50 +57,50 @@ static float		**ft_converse_string_to_float(float **float_tab, char *line, int y
 	nbr_len = ft_tabsize(tmp);
 	if (!nbr)
 		nbr = nbr_len;
-	if (nbr != nbr_len || (!(float_tab = (float**)malloc(sizeof(float*) * (nbr_len + 1)))))
+	if (nbr != nbr_len || (!(double_tab = (double**)malloc(sizeof(double*) * (nbr_len + 1)))))
 	{
 		ft_putstr("Invalid argument format.\n");
 		ft_memdel((void**)tmp);
 		return (NULL);
 	}
-	float_tab[nbr_len] = NULL;
-	return (converse_final(float_tab, tmp, y_size));
+	double_tab[nbr_len] = NULL;
+	return (converse_final(double_tab, tmp, y_size));
 }
 
-static float		***ft_parse_chartab(char **asci_tab)
+static double		***ft_parse_chartab(char **asci_tab)
 {
 	int			i;
 	int			y_size;
-	float		*tmp_char;
-	float		***float_tab;
+	double		*tmp_char;
+	double		***double_tab;
 
-	float_tab = NULL;
+	double_tab = NULL;
 	i = ft_tabsize(asci_tab);
 	y_size = i - 1;
 	tmp_char = NULL;
-	if (!(float_tab = (float***)malloc(sizeof(float**) * (i + 1))))
+	if (!(double_tab = (double***)malloc(sizeof(double**) * (i + 1))))
 		return (NULL);
-	float_tab[i] = NULL;
+	double_tab[i] = NULL;
 	i = 0;
 	while (asci_tab[i])
 	{
-		if (!(float_tab[i] = ft_converse_string_to_float(float_tab[i], asci_tab[i], y_size)))
+		if (!(double_tab[i] = ft_converse_string_to_double(double_tab[i], asci_tab[i], y_size)))
 		{
-			ft_memdel((void**)float_tab);
+			ft_memdel((void**)double_tab);
 			return (NULL);
 		}
 		y_size--;
 		i++;
 	}
 	g_max_z = i;
-	return (float_tab);
+	return (double_tab);
 }
 
-static float		***ft_parse_lines(float fd)
+static double		***ft_parse_lines(double fd)
 {
 	char	*tmp;
 	char	**map_asci_tab;
-	float		ret;
+	double		ret;
 
 	tmp = NULL;
 	map_asci_tab = NULL;
@@ -123,9 +123,9 @@ static float		***ft_parse_lines(float fd)
 	return (ft_parse_chartab(map_asci_tab));
 }
 
-float				***ft_parsing(char *arg)
+double				***ft_parsing(char *arg)
 {
-	float		fd;
+	double		fd;
 	DIR		*test_dir;
 
 	fd = -1;

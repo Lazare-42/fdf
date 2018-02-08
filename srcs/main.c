@@ -16,7 +16,7 @@
 #include "../includes/fdf.h"
 #include <stdlib.h>
 
-static float ***g_tab = NULL;
+static double ***g_tab = NULL;
 static t_mlx mlx;
 
 int		my_key_funct(int keycode, void *info)
@@ -63,9 +63,9 @@ int		main(int ac, char **av)
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, X_SIZE, Y_SIZE, "FDF");
 	mlx.image = mlx_new_image(mlx.mlx, X_SIZE, Y_SIZE);
+	print_tab_debug(g_tab);
 
 	mlx.screen_data = (int*)mlx_get_data_addr(mlx.image, &bpp, &size_line, &endian);
-	print_tab_debug(g_tab);
 
 	int i;
 	int j;
@@ -83,7 +83,6 @@ int		main(int ac, char **av)
 		}
 		i++;
 	}
-	print_tab_debug(g_tab);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image, 0, 0);
 	mlx_key_hook(mlx.win, my_key_funct, mlx.mlx);
 	mlx_loop(mlx.mlx);

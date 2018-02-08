@@ -22,15 +22,15 @@ typedef struct 		s_mlx
 	int				*screen_data;
 }					t_mlx;
 
-float				***ft_parsing(char *arg);
-void				print_tab_debug(float ***TABTAB);
-float				***camera_move(float ***tab, int input_operation);
-float				***create_rotation_matrix(float ***g_rotate_matrix);
-float				***table_transform_handler(float ***tab,
+double				***ft_parsing(char *arg);
+void				print_tab_debug(double ***TABTAB);
+double				***camera_move(double ***tab, int input_operation);
+double				***create_rotation_matrix(double ***g_rotate_matrix);
+double				***table_transform_handler(double ***tab,
 		int input_operation);
-float				***first_camera_move(float ***tab);
-void				put_to_screen_string(float *tab, int **screen);
-void				draw_line(float *from, float *to, int **screen);
-float				***scale(float ***tab, int max_x, int max_y, int max_z);
+double				***first_camera_move(double ***tab);
+void				put_to_screen_string(double *tab, int **screen);
+void				draw_line(double *from, double *to, int **screen);
+double				***scale(double ***tab, int max_x, int max_y, int max_z);
 
 #endif

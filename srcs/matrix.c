@@ -8,13 +8,13 @@
 *** Note : g_cos_sinus is filled up in the x, y, z and cosinus-sinus order
 */
 
-static float g_cos_sinus[6] = {1, 0, 1, 0, 1, 0};
-static float ***g_rotate_matrix = NULL;
-static float x_radius = 0;
-static float y_radius = 0;
-static float z_radius = 0;
+static double g_cos_sinus[6] = {1, 0, 1, 0, 1, 0};
+static double ***g_rotate_matrix = NULL;
+static double x_radius = 0;
+static double y_radius = 0;
+static double z_radius = 0;
 
-float	*matrix_multiplication(float *tab)
+double	*matrix_multiplication(double *tab)
 {
 	tab[0] = g_rotate_matrix[0][0][0] * tab[0] + g_rotate_matrix[0][0][1] * tab[1] + g_rotate_matrix[0][0][2] * tab[2];
 	tab[1] = g_rotate_matrix[0][1][0] * tab[0] + g_rotate_matrix[0][1][1] * tab[1] + g_rotate_matrix[0][1][2] * tab[2];
@@ -82,8 +82,8 @@ void	modify_sin_cos(int input_operation)
 }
 
 /*
-*** Note : filling up the float *** matrix in the order of the matrix_multiplication
-*** Note : filling up the float ** matrixes in vertical-vector order
+*** Note : filling up the double *** matrix in the order of the matrix_multiplication
+*** Note : filling up the double ** matrixes in vertical-vector order
 */
 
 void	fillup_rotation_matrix(int input_operation)
@@ -117,7 +117,7 @@ void	fillup_rotation_matrix(int input_operation)
 	first = 0;
 }
 
-float	***table_transform_handler(float ***tab, int input_operation)
+double	***table_transform_handler(double ***tab, int input_operation)
 {
 	int i;
 	int j;
