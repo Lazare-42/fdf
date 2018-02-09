@@ -35,7 +35,6 @@ double	***first_camera_move(double ***tab, int max_x, int max_y, int max_z)
 		j = -1;
 		while(tab[++j])
 		{
-			debug();
 			tab[0] += max_x * 4;
 			tab[1] += max_y * 4;
 			tab[2] += max_z * 4;
