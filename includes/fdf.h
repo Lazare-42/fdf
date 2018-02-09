@@ -3,14 +3,14 @@
 
 # define X_SIZE 1680
 # define Y_SIZE 1050  
-# define KEY_LEFT 123
-# define KEY_RIGHT 124
-# define KEY_DOWN 125
-# define KEY_UP 126 
-# define X_ROTATE_UP 109
-# define X_ROTATE_DOWN 122
-# define Y_ROTATE_UP 122
-# define Y_ROTATE_DOWN 1212
+# define KEY_LEFT 1222
+# define KEY_RIGHT 12422
+# define KEY_DOWN 12522
+# define KEY_UP 12633
+# define X_ROTATE_UP 123
+# define X_ROTATE_DOWN 124
+# define Y_ROTATE_UP 125
+# define Y_ROTATE_DOWN 126
 # define Z_ROTATE_UP 1212
 # define Z_ROTATE_DOWN 1212
 
@@ -29,7 +29,7 @@ float				***create_rotation_matrix(float ***g_rotate_matrix);
 float				***table_transform_handler(float ***tab,
 		int input_operation);
 float				***first_camera_move(float ***tab);
-void				put_to_screen_string(float *tab, int **screen);
+void				print_handler(float ***tab, int print, int **screen);
 void				draw_line(float *from, float *to, int **screen);
 float				***scale(float ***tab, int max_x, int max_y, int max_z);
 

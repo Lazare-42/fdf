@@ -27,11 +27,39 @@ void	draw_line(float *from, float *to, int **screen)
 
 }
 
-void put_to_screen_string(float *tab, int **screen)
+void put_to_screen_string(float *tab, int **screen, int print)
 {
-	int where_to;
+	int			where_to;
+	static int	max_screen_pixel = X_SIZE * Y_SIZE;
 
 	where_to = 0;
-	where_to = (int)tab[0] + (tab[2]) * X_SIZE;
-	(*screen)[where_to] = 0xFEFFFF;
+	where_to = (int)tab[0] + (tab[1]) * X_SIZE;
+	if (where_to >= 0 && where_to <= max_screen_pixel)
+	{
+		if (print)
+			(*screen)[where_to] = 0xFEFFFF;
+		else 
+			(*screen)[where_to] = 0;
+	}
+}
+
+void print_handler(float ***tab, int print, int **screen)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (tab[i])
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			if (print)
+				put_to_screen_string(tab[i][j], screen, 1);
+			else
+				put_to_screen_string(tab[i][j], screen, 0);
+			j++;
+		}
+		i++;
+	}
 }

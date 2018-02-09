@@ -36,7 +36,9 @@ static float		**converse_final(float **float_tab, char **tmp, int y)
 		float_tab[i][0] = x;
 		float_tab[i][1] = ft_atoi(tmp[i]);
 		(float_tab[i][1] > g_max_y ) ? g_max_y = float_tab[i][1] : 0;
-		float_tab[i][2] = y;
+		float_tab[i][2] = y + 1;
+		float_tab[i][0] /= float_tab[i][2];
+		float_tab[i][1] /= float_tab[i][2];
 		x++;
 	}
 	g_max_x = x;

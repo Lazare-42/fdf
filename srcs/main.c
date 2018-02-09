@@ -19,30 +19,12 @@
 static float ***g_tab = NULL;
 static t_mlx mlx;
 
-int		my_key_funct(int keycode, void *info)
+int		my_key_funct(int keycode)
 {
-	(void)info;
-	keycode++;
-//	g_tab = table_transform_handler(g_tab, X_ROTATE_UP);
-	int i;
-	int j;
-	i = 0;
-	j = 0;
-	/*
-	while (g_tab[i])
-	{
-		j = 0;
-		while (g_tab[i][j])
-		{
-			put_to_screen_string(g_tab[i][j], &(mlx.screen_data));
-			j++;
-		}
-	}
+	print_handler(g_tab, 0, &(mlx.screen_data));
+	g_tab = table_transform_handler(g_tab, keycode);
+	print_handler(g_tab, 1, &(mlx.screen_data));
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image, 0, 0);
-	*/
-
-
-
 	return (0);
 }
 
@@ -65,25 +47,7 @@ int		main(int ac, char **av)
 	mlx.image = mlx_new_image(mlx.mlx, X_SIZE, Y_SIZE);
 
 	mlx.screen_data = (int*)mlx_get_data_addr(mlx.image, &bpp, &size_line, &endian);
-	print_tab_debug(g_tab);
-
-	int i;
-	int j;
-	i = 0;
-	j = 0;
-	while (g_tab[i])
-	{
-		j = 0;
-		while(g_tab[i][j])
-		{
-			put_to_screen_string(g_tab[i][j], &(mlx.screen_data));
-	//		if (g_tab[i+1])
-	//			draw_line(g_tab[i][j], g_tab[i+1][j], &(mlx.screen_data));
-			j++;
-		}
-		i++;
-	}
-	print_tab_debug(g_tab);
+	print_handler(g_tab, 1, &(mlx.screen_data));
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image, 0, 0);
 	mlx_key_hook(mlx.win, my_key_funct, mlx.mlx);
 	mlx_loop(mlx.mlx);
