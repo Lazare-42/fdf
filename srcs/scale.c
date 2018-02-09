@@ -4,37 +4,34 @@
 float	***scale(float ***tab, int max_x, int max_y, int max_z)
 {
 	ft_putnbr(max_x);
-	ft_putchar(' ');
 	ft_putnbr(max_y);
-	ft_putnbr(max_z);
-	int i;
-	int j;
+	(void)max_z;
+	int	i;
+	int	j;
+	float scale_x;
+	float scale_y;
+	float scale_z;
+	float	screen_adjust_x;
+	float	screen_adjust_y;
 
-	print_tab_debug(tab);
-	i = 0;
-	while (tab[i])
+	i = -1;
+	scale_x = (X_SIZE / 4) / max_x;
+	scale_y = (Y_SIZE  / 4) / max_y;
+
+	scale_z = Y_SIZE / 6 / max_y;
+
+	screen_adjust_x = X_SIZE / 4;
+	screen_adjust_y = Y_SIZE / 4;
+	while (tab[++i])
 	{
-		j = 0;
-		while (tab[i][j])
+		j = -1;
+		while (tab[i][++j])
 		{
-			//put to screen space by dividing by z
-			tab[i][j][0] /= tab[i][j][2];
-			tab[i][j][1] /= tab[i][j][2];
-
-			//adapt to screen by adapting to normalized device coordinates , from 0 to 1
-			tab[i][j][0] = (tab[i][j][0] + X_SIZE / 2) / X_SIZE;
-			tab[i][j][1] = (tab[i][j][1] + Y_SIZE / 2) / Y_SIZE;
-
-			//adapt to screen by adapting to raster space
-			tab[i][j][0] *= X_SIZE; 
-			tab[i][j][1] *= Y_SIZE;
-			//	tab[i][0] /= tab[i][2];
-			//	tab[i][1] /= tab[i][2];
-			j++;
+			tab[i][j][0] *= scale_x;
+			tab[i][j][0] += screen_adjust_x;
+			tab[i][j][1] *= scale_y;
+			tab[i][j][1] += screen_adjust_y;
 		}
-		i++;
 	}
-	print_tab_debug(tab);
-	(void)max_y;
 	return (tab);
 }
