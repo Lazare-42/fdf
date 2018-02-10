@@ -1,7 +1,7 @@
 #include "../includes/fdf.h"
 #include "../libft/include/libft.h"
 
-void	print_tab_debug(float ***TABTAB)
+void	print_tab_debug(double ***TABTAB)
 {
 	int i;
 	int j;

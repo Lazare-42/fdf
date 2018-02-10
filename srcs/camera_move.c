@@ -1,7 +1,25 @@
 #include "fdf.h"
+#include <math.h>
+#include <stdio.h>
+#include "../libft/include/libft.h"
 
-float	***camera_move(float ***tab, int input_operation)
+static int setback[3];
+//** edge veut dire arete (du vecteur de mouvement)
+static float edge;
+
+static void	modify_sin_cos(double **cos_sinus)
 {
+	(*cos_sinus)[0] = setback[0] / edge;
+	(*cos_sinus)[1] = sqrt(1 - (*cos_sinus)[0] * (*cos_sinus)[0]);
+	(*cos_sinus)[2] = setback[1] / edge;
+	(*cos_sinus)[3] = sqrt(1 - (*cos_sinus)[2] * (*cos_sinus)[2]);
+	(*cos_sinus)[4] = setback[2] / edge;
+	(*cos_sinus)[5] = sqrt(1 - (*cos_sinus)[4] * (*cos_sinus)[4]);
+}
+
+double	***camera_move(double ***tab, int input_operation, double **cos_sinus)
+{
+	(void)cos_sinus;
 	int i;
 	int j;
 
@@ -15,48 +33,43 @@ float	***camera_move(float ***tab, int input_operation)
 			tab[i][j][2] = (input_operation == KEY_UP) ? tab[i][j][2]++ : tab[i][j][2];
 			tab[i][j][2] = (input_operation == KEY_DOWN) ? tab[i][j][2]-- : tab[i][j][2];
 			tab[i][j][1] = (input_operation == KEY_LEFT) ? tab[i][j][1]++ : tab[i][j][1];
-			tab[i][j][1] = (input_operation == KEY_LEFT) ? tab[i][j][1]-- : tab[i][j][1];
+			tab[i][j][1] = (input_operation == KEY_RIGHT) ? tab[i][j][1]-- : tab[i][j][1];
 			j++;
 		}
 		i++;
 	}
+	(input_operation == KEY_UP) ? setback[2]++ : 0;
+	(input_operation == KEY_DOWN) ? setback[2]-- : 0;
+	(input_operation == KEY_LEFT) ? setback[1]++ : 0;
+	(input_operation == KEY_RIGHT) ? setback[1]-- : 0;
+	modify_sin_cos(cos_sinus);
 	return (tab);
 }
 
-float	***first_camera_move(float ***tab)
+double	***first_camera_move(double ***tab, double **cos_sinus, int *field_size)
 {
 	int i;
 	int j;
-	int x_setback;
-	int z_setback;
-	int y_setback;
 
-	i = -1;
-	x_setback = 0; 
-	z_setback = 0;
-	y_setback = 0;
-	while (tab[++i])
+	i = 0;
+	setback[0] = field_size[0] * 2;
+	setback[1] = field_size[1] * 3;
+	setback[2] = field_size[2] * 2;
+	edge = sqrt(setback[0] * setback[0] + setback[1] * setback[1] + setback[2] * setback[2]);
+	// Pas sur d'avoir a reculer. Car je veux juste avoir de vue - pas reculer en l'occurence ! Surtout que je veux ensuite avoir 0.0.0
+	// au centre de l'ecran
+	while (tab[i])
 	{
-		j = -1;
-		while (tab[i][++j])
+		j = 0;
+		while (tab[i][j])
 		{
-			(tab[i][j][0] > x_setback) ? x_setback = tab[i][j][0]: 0;
-			(tab[i][j][1] > y_setback) ? y_setback = tab[i][j][1]: 0;
-			(tab[i][j][2] > z_setback) ? z_setback = tab[i][j][2]: 0;
+			tab[i][j][0] += setback[0];
+			tab[i][j][1] += setback[1];
+			tab[i][j][2] += setback[2];
+			j++;
 		}
+		i++;
 	}
-	i = -1;
-	x_setback++;
-	z_setback++;
-	y_setback *= 3;
-	while (tab[++i])
-	{
-		j = -1;
-		while (tab[i][++j])
-		{
-			tab[i][j][0] += x_setback;
-			tab[i][j][1] += y_setback;
-		}
-	}
+	modify_sin_cos(cos_sinus);
 	return (tab);
 }

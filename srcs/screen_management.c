@@ -1,12 +1,12 @@
 #include "../includes/fdf.h"
 #include "../libft/include/libft.h"
 
-void	draw_line(float *from, float *to, int **screen)
+void	draw_line(double *from, double *to, int **screen)
 {
-	float dx;
-	float dy;
-	float D;
-	float y;
+	double dx;
+	double dy;
+	double D;
+	double y;
 	int x;
 
 	dx = from[0] - to[0];
@@ -27,7 +27,7 @@ void	draw_line(float *from, float *to, int **screen)
 
 }
 
-void put_to_screen_string(float *tab, int **screen, int print)
+void put_to_screen_string(double *tab, int **screen, int print)
 {
 	int			where_to;
 	static int	max_screen_pixel = X_SIZE * Y_SIZE;
@@ -43,7 +43,7 @@ void put_to_screen_string(float *tab, int **screen, int print)
 	}
 }
 
-void print_handler(float ***tab, int print, int **screen)
+void print_handler(double ***tab, int print, int **screen)
 {
 	int i;
 	int j;

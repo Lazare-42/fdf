@@ -13,6 +13,7 @@
 # define Y_ROTATE_DOWN 126
 # define Z_ROTATE_UP 1212
 # define Z_ROTATE_DOWN 1212
+# define CAMERA_SETBACK 10932
 
 typedef struct 		s_mlx
 {
@@ -22,15 +23,16 @@ typedef struct 		s_mlx
 	int				*screen_data;
 }					t_mlx;
 
-float				***ft_parsing(char *arg);
-void				print_tab_debug(float ***TABTAB);
-float				***camera_move(float ***tab, int input_operation);
-float				***create_rotation_matrix(float ***g_rotate_matrix);
-float				***table_transform_handler(float ***tab,
-		int input_operation);
-float				***first_camera_move(float ***tab);
-void				print_handler(float ***tab, int print, int **screen);
-void				draw_line(float *from, float *to, int **screen);
-float				***scale(float ***tab, int max_x, int max_y, int max_z);
+double				***ft_parsing(char *arg);
+void				print_tab_debug(double ***TABTAB);
+double				***camera_move(double ***tab, int input_operation,
+		double **cos_sinus);
+double				***create_rotation_matrix(double ***g_rotate_matrix);
+double				***table_transform_handler(double ***tab,
+		int input_operation, int *camera_setback);
+double				***first_camera_move(double ***tab, double **cos_sinus, int *camera_setback);
+void				print_handler(double ***tab, int print, int **screen);
+void				draw_line(double *from, double *to, int **screen);
+double				***scale(double ***tab, int max_x, int max_y, int max_z);
 
 #endif

@@ -16,13 +16,13 @@
 #include "../includes/fdf.h"
 #include <stdlib.h>
 
-static float ***g_tab = NULL;
+static double ***g_tab = NULL;
 static t_mlx mlx;
 
 int		my_key_funct(int keycode)
 {
 	print_handler(g_tab, 0, &(mlx.screen_data));
-	g_tab = table_transform_handler(g_tab, keycode);
+	g_tab = table_transform_handler(g_tab, keycode, NULL);
 	print_handler(g_tab, 1, &(mlx.screen_data));
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image, 0, 0);
 	return (0);
