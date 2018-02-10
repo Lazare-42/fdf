@@ -9,7 +9,6 @@
  */
 
 static double *g_cos_sinus  = NULL;
-static double ***g_rotate_matrix = NULL;
 static double x_radius = 0;
 static double y_radius = 0;
 static double z_radius = 0;
@@ -25,17 +24,9 @@ double	***matrix_multiplication(double ***tab)
 		j = 0;
 		while(tab[i][j])
 		{
-			tab[i][j][0] = g_rotate_matrix[0][0][0] * tab[i][j][0] + g_rotate_matrix[0][0][1] * tab[i][j][1] + g_rotate_matrix[0][0][2] * tab[i][j][2];
-			tab[i][j][1] = g_rotate_matrix[0][1][0] * tab[i][j][0] + g_rotate_matrix[0][1][1] * tab[i][j][1] + g_rotate_matrix[0][1][2] * tab[i][j][2];
-			tab[i][j][2] = g_rotate_matrix[0][2][0] * tab[i][j][0] + g_rotate_matrix[0][2][1] * tab[i][j][1] + g_rotate_matrix[0][2][2] * tab[i][j][2];
-
-			tab[i][j][0] = g_rotate_matrix[1][0][0] * tab[i][j][0] + g_rotate_matrix[1][0][1] * tab[i][j][1] + g_rotate_matrix[1][0][2] * tab[i][j][2];
-			tab[i][j][1] = g_rotate_matrix[1][1][0] * tab[i][j][0] + g_rotate_matrix[1][1][1] * tab[i][j][1] + g_rotate_matrix[1][1][2] * tab[i][j][2];
-			tab[i][j][2] = g_rotate_matrix[1][2][0] * tab[i][j][0] + g_rotate_matrix[1][2][1] * tab[i][j][1] + g_rotate_matrix[1][2][2] * tab[i][j][2];
-
-			tab[i][j][0] = g_rotate_matrix[2][0][0] * tab[i][j][0] + g_rotate_matrix[2][0][1] * tab[i][j][1] + g_rotate_matrix[2][0][2] * tab[i][j][2];
-			tab[i][j][1] = g_rotate_matrix[2][1][0] * tab[i][j][0] + g_rotate_matrix[2][1][1] * tab[i][j][1] + g_rotate_matrix[2][1][2] * tab[i][j][2];
-			tab[i][j][2] = g_rotate_matrix[2][2][0] * tab[i][j][0] + g_rotate_matrix[2][2][1] * tab[i][j][1] + g_rotate_matrix[2][2][2] * tab[i][j][2];
+			X = cy * (sz * Y + cz * X) - sy * Z;
+			Y = sx * (cy * Z + sy * (sz * Y + cz * X)) + cx * (cz * Y - sz * X);
+			Z = cx * (cy * Z + sy * (sz * Y + cz * X)) - sx * (cz * Y - sz * X);
 			j++;
 		}
 		i++;
@@ -78,74 +69,48 @@ void	modify_sin_cos(int input_operation)
 		negative_radius_value(input_operation);
 	if (input_operation == X_ROTATE_UP || input_operation == X_ROTATE_DOWN)
 	{
-		g_cos_sinus[0] = cos(x_radius);
-		g_cos_sinus[1] = sqrt(1 - g_cos_sinus[0] * g_cos_sinus[0]);
+		cx = cos(x_radius);
+		sx = sqrt(1 - cx * cx);
 	}
 	else if (input_operation == Y_ROTATE_UP || input_operation == Y_ROTATE_DOWN)
 	{
-		g_cos_sinus[2] = cos(y_radius);
-		g_cos_sinus[3] = sqrt(1 - g_cos_sinus[2] * g_cos_sinus[2]);
+		cy = cos(y_radius);
+		sy = sqrt(1 - cy * cy);
 	}
 	else if (input_operation == Z_ROTATE_UP || input_operation == Z_ROTATE_DOWN)
 	{
-		g_cos_sinus[4] = cos(z_radius);
-		g_cos_sinus[5] = sqrt(1 - g_cos_sinus[4] * g_cos_sinus[4]);
+		cz = cos(z_radius);
+		sz = sqrt(1 - cz * cz);
 	}
 }
 
-/*
- *** Note : filling up the double *** matrix in the order of the matrix_multiplication
- *** Note : filling up the double ** matrixes in vertical-vector order
- */
-
-void	fillup_rotation_matrix(int input_operation)
+int		check_if_input(int input_operation)
 {
-	static int first = 1;
-
-	if (first || input_operation == Z_ROTATE_DOWN || input_operation == Z_ROTATE_UP)
-	{
-		g_rotate_matrix[0][0][0] = g_cos_sinus[4];
-		g_rotate_matrix[0][0][1] = -g_cos_sinus[5];
-		g_rotate_matrix[0][1][0] = g_cos_sinus[5];
-		g_rotate_matrix[0][1][1] = g_cos_sinus[4];
-		g_rotate_matrix[0][2][2] = 1;
-	}
-	if (first || input_operation == Y_ROTATE_DOWN || input_operation == Y_ROTATE_UP)
-	{
-		g_rotate_matrix[1][0][0] = g_cos_sinus[2];
-		g_rotate_matrix[1][0][2] = g_cos_sinus[3];
-		g_rotate_matrix[1][1][1] = 1;
-		g_rotate_matrix[1][2][0] = -g_cos_sinus[3];
-		g_rotate_matrix[1][2][2] = g_cos_sinus[2];
-	}
-	if (first || input_operation == X_ROTATE_DOWN || input_operation == X_ROTATE_UP)
-	{
-		g_rotate_matrix[2][0][0] = 1;
-		g_rotate_matrix[2][1][1] = g_cos_sinus[0];
-		g_rotate_matrix[2][1][2] = -g_cos_sinus[1];
-		g_rotate_matrix[2][2][1] = g_cos_sinus[1];
-		g_rotate_matrix[2][2][2] = g_cos_sinus[0];
-	}
-	first = 0;
+	if (input_operation == X_ROTATE_DOWN || input_operation == X_ROTATE_UP ||
+			input_operation == Y_ROTATE_DOWN || input_operation == Y_ROTATE_UP ||
+			input_operation == Z_ROTATE_DOWN || input_operation == Z_ROTATE_UP ||
+			input_operation == KEY_LEFT || input_operation == KEY_RIGHT ||
+			input_operation == KEY_DOWN || input_operation == KEY_UP ||
+			input_operation == CAMERA_SETBACK)
+		return (1);
+	else
+		return (0);
 }
 
 double	***table_transform_handler(double ***tab, int input_operation, int *field_size)
 {
+	if (!(check_if_input(input_operation)))
+		return (tab);
 	if (!(g_cos_sinus = (double*)malloc(sizeof(double) * 6)))
 		return (NULL);
-	if (!g_rotate_matrix)
-		if (!(g_rotate_matrix = create_rotation_matrix(g_rotate_matrix)))
-			return (NULL);
 	if (input_operation == CAMERA_SETBACK)
 		tab = first_camera_move(tab, &g_cos_sinus, field_size); 
-	if (input_operation == KEY_LEFT || input_operation == KEY_RIGHT ||
+	else if (input_operation == KEY_LEFT || input_operation == KEY_RIGHT ||
 			input_operation == KEY_DOWN || input_operation == KEY_UP)
 		tab = camera_move(tab, input_operation, &g_cos_sinus);
-	if (input_operation == X_ROTATE_DOWN || input_operation == X_ROTATE_UP ||
-			input_operation == Y_ROTATE_DOWN || input_operation == Y_ROTATE_UP ||
-			input_operation == Z_ROTATE_DOWN || input_operation == Z_ROTATE_UP)
+	else
 		modify_sin_cos(input_operation);
-	fillup_rotation_matrix(input_operation);
 	tab = matrix_multiplication(tab);
+	print_tab_debug(tab);
 	return (tab);
 }

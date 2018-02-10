@@ -1,6 +1,15 @@
 #ifndef FDF_H
 # define FDF_H
 
+# define X tab[i][j][0]
+# define Y tab[i][j][1]
+# define Z tab[i][j][2]
+# define cx g_cos_sinus[0]
+# define sx g_cos_sinus[1]
+# define cy g_cos_sinus[2]
+# define sy g_cos_sinus[3]
+# define cz g_cos_sinus[4]
+# define sz g_cos_sinus[5]
 # define X_SIZE 1680
 # define Y_SIZE 1050  
 # define KEY_LEFT 1222

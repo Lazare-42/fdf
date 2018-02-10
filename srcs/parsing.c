@@ -36,7 +36,7 @@ static double		**converse_final(double **double_tab, char **tmp, int y)
 		double_tab[i][0] = x;
 		double_tab[i][1] = ft_atoi(tmp[i]);
 		(double_tab[i][1] > g_max_y ) ? g_max_y = double_tab[i][1] : 0;
-		double_tab[i][2] = y + 1;
+		double_tab[i][2] = y;
 		x++;
 	}
 	g_max_x = x;

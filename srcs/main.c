@@ -21,6 +21,8 @@ static t_mlx mlx;
 
 int		my_key_funct(int keycode)
 {
+	if (keycode == 53)
+		exit(0);
 	print_handler(g_tab, 0, &(mlx.screen_data));
 	g_tab = table_transform_handler(g_tab, keycode, NULL);
 	print_handler(g_tab, 1, &(mlx.screen_data));
@@ -39,8 +41,7 @@ int		main(int ac, char **av)
 	if (av[1])
 		g_tab = ft_parsing(av[1]);
 	else 
-		return(ft_put_fatal_error(("Pass a file to FDF to launch program\n")));
-//	g_tab = first_camera_move(g_tab);
+		return(ft_put_fatal_error(("Pass a file to FDF to launch program")));
 
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, X_SIZE, Y_SIZE, "FDF");
