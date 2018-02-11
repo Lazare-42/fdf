@@ -33,10 +33,16 @@ void put_to_screen_string(double *tab, int **screen, int print, int *dimensions)
 	int			where_to;
 	static int	max_screen_pixel = X_SIZE * Y_SIZE;
 
-	tab[0] *= (X_SIZE / 3) / (dimensions[0] * 2);
-	tab[1] *= (Y_SIZE / 3) / (dimensions[1] * 3);
-	where_to = tab[0] - (int)tab[1] * X_SIZE;
-	where_to += (X_SIZE / 2) + (Y_SIZE / 2) * X_SIZE;
+	where_to = 0;
+
+	tab[0] *= (X_SIZE / 3 ) / (dimensions[0] * 2);
+	tab[2] *= (Y_SIZE / 3) / (dimensions[2] * 2);
+//	where_to = (X_SIZE / 2) + (Y_SIZE / 2) * X_SIZE;
+	where_to += tab[0] + tab[2] * X_SIZE;
+	printf("%d ",(where_to));
+	printf("%G ",(tab[0]));
+	printf("%G ",(tab[2]));
+	ft_putchar('\n');
 	if (where_to >= 0 && where_to <= max_screen_pixel)
 	{
 		if (print)

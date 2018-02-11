@@ -111,6 +111,5 @@ double	***table_transform_handler(double ***tab, int input_operation, int *field
 	else
 		modify_sin_cos(input_operation);
 	tab = matrix_multiplication(tab);
-	print_tab_debug(tab);
 	return (tab);
 }

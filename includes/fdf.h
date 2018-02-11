@@ -32,7 +32,7 @@ typedef struct 		s_mlx
 	int				*screen_data;
 }					t_mlx;
 
-double				***ft_parsing(char *arg);
+double				***ft_parsing(char *arg, int **dimensions);
 void				print_tab_debug(double ***TABTAB);
 double				***camera_move(double ***tab, int input_operation,
 		double **cos_sinus);
@@ -40,7 +40,7 @@ double				***create_rotation_matrix(double ***g_rotate_matrix);
 double				***table_transform_handler(double ***tab,
 		int input_operation, int *camera_setback);
 double				***first_camera_move(double ***tab, double **cos_sinus, int *camera_setback);
-void				print_handler(double ***tab, int print, int **screen);
+void				print_handler(double ***tab, int print, int **screen, int *dimensions);
 void				draw_line(double *from, double *to, int **screen);
 double				***scale(double ***tab, int max_x, int max_y, int max_z);
 

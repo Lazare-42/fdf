@@ -19,13 +19,13 @@
 static double ***g_tab = NULL;
 static t_mlx mlx;
 
-int		my_key_funct(int keycode)
+int		my_key_funct(int keycode, int *dimensions)
 {
 	if (keycode == 53)
 		exit(0);
-	print_handler(g_tab, 0, &(mlx.screen_data));
+	print_handler(g_tab, 0, &(mlx.screen_data), dimensions);
 	g_tab = table_transform_handler(g_tab, keycode, NULL);
-	print_handler(g_tab, 1, &(mlx.screen_data));
+	print_handler(g_tab, 1, &(mlx.screen_data), dimensions);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image, 0, 0);
 	return (0);
 }
@@ -36,19 +36,22 @@ int		main(int ac, char **av)
 	int		bpp;
 	int		endian;
 	int		size_line;
+	int		*dimensions;
 
 	g_tab = NULL;
+	dimensions = NULL;
 	if (av[1])
-		g_tab = ft_parsing(av[1]);
+	{
+		if (!(g_tab = ft_parsing(av[1], &dimensions)))
+			return (ft_put_fatal_error("Parsing error."));
+	}
 	else 
 		return(ft_put_fatal_error(("Pass a file to FDF to launch program")));
-
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, X_SIZE, Y_SIZE, "FDF");
 	mlx.image = mlx_new_image(mlx.mlx, X_SIZE, Y_SIZE);
-
 	mlx.screen_data = (int*)mlx_get_data_addr(mlx.image, &bpp, &size_line, &endian);
-	print_handler(g_tab, 1, &(mlx.screen_data));
+	print_handler(g_tab, 1, &(mlx.screen_data), dimensions);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image, 0, 0);
 	mlx_key_hook(mlx.win, my_key_funct, mlx.mlx);
 	mlx_loop(mlx.mlx);

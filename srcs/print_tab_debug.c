@@ -1,22 +1,21 @@
 #include "../includes/fdf.h"
 #include "../libft/include/libft.h"
-#include <stdio.h>
 
-void	print_tab_debug(double ***tab)
+void	print_tab_debug(double ***TABTAB)
 {
 	int i;
 	int j;
 
 	i = 0;
 	ft_putchar('\n');
-	if (tab)
+	if (TABTAB)
 	{
-		while(tab[i])
+		while(TABTAB[i])
 		{
 			j = 0;
-			while (tab[i][j])
+			while (TABTAB[i][j])
 			{
-				printf("%G\n",X);
+				ft_putnbr(TABTAB[i][j][0]);
 				ft_putchar(' ');
 				j++;
 			}
@@ -25,12 +24,12 @@ void	print_tab_debug(double ***tab)
 		}
 		i = 0;
 			ft_putchar('\n');
-		while(tab[i])
+		while(TABTAB[i])
 		{
 			j = 0;
-			while (tab[i][j])
+			while (TABTAB[i][j])
 			{
-				printf("%G\n",Y);
+				ft_putnbr(TABTAB[i][j][1]);
 				ft_putchar(' ');
 				j++;
 			}
@@ -39,12 +38,12 @@ void	print_tab_debug(double ***tab)
 		}
 		i = 0;
 		ft_putchar('\n');
-		while(tab[i])
+		while(TABTAB[i])
 		{
 			j = 0;
-			while (tab[i][j])
+			while (TABTAB[i][j])
 			{
-				printf("%G\n",Z);
+				ft_putnbr(TABTAB[i][j][2]);
 				ft_putchar(' ');
 				j++;
 			}

@@ -61,7 +61,9 @@ double	***first_camera_move(double ***tab, double **g_cos_sinus, int *field_size
 		while (tab[i][++j])
 		{
 			X += setback[0];
+			//X *= X_SIZE / setback[0];
 			Y += setback[1];
+		//	Y *= Y_SIZE / setback[0];
 			Z += setback[2];
 		}
 	}

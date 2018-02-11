@@ -18,11 +18,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 
-static int g_max_z = 0;
-static int g_max_y = 0;
-static int g_max_x = 0;
-
-static double		**converse_final(double **double_tab, char **tmp, int y)
+static double		**converse_final(double **tab, char **tmp, int y, int **dimensions)
 {
 	int				x;
 	int				i;
@@ -31,20 +27,20 @@ static double		**converse_final(double **double_tab, char **tmp, int y)
 	i = -1;
 	while (tmp[++i])
 	{
-		if (!(double_tab[i] = (double*)malloc(sizeof(double) * 3)))
+		if (!(tab[i] = (double*)malloc(sizeof(double) * 3)))
 			return (NULL);
-		double_tab[i][0] = x;
-		double_tab[i][1] = ft_atoi(tmp[i]);
-		(double_tab[i][1] > g_max_y ) ? g_max_y = double_tab[i][1] : 0;
-		double_tab[i][2] = y;
+		tab[i][0] = x;
+		tab[i][1] = ft_atoi(tmp[i]);
+		(tab[i][1] > (*dimensions)[1]) ? (*dimensions)[1] = tab[i][1] : 0;
+		tab[i][2] = y;
 		x++;
 	}
-	g_max_x = x;
+	(*dimensions)[0] = x;
 	ft_memdel((void**)tmp);
-	return (double_tab);
+	return (tab);
 }
 
-static double		**ft_converse_string_to_double(double **double_tab, char *line, int y_size)
+static double		**ft_converse_string_to_double(double **tab, char *line, int y_size, int **dimensions)
 {
 	char			**tmp;
 	static double	nbr = 0;
@@ -57,46 +53,50 @@ static double		**ft_converse_string_to_double(double **double_tab, char *line, i
 	nbr_len = ft_tabsize(tmp);
 	if (!nbr)
 		nbr = nbr_len;
-	if (nbr != nbr_len || (!(double_tab = (double**)malloc(sizeof(double*) * (nbr_len + 1)))))
+	if (nbr != nbr_len || (!(tab = (double**)malloc(sizeof(double*) * (nbr_len + 1)))))
 	{
 		ft_putstr("Invalid argument format.\n");
 		ft_memdel((void**)tmp);
 		return (NULL);
 	}
-	double_tab[nbr_len] = NULL;
-	return (converse_final(double_tab, tmp, y_size));
+	tab[nbr_len] = NULL;
+	return (converse_final(tab, tmp, y_size, dimensions));
 }
 
-static double		***ft_parse_chartab(char **asci_tab)
+static double		***ft_parse_chartab(char **asci_tab, int **dimensions)
 {
 	int			i;
 	int			y_size;
 	double		*tmp_char;
-	double		***double_tab;
+	double		***tab;
 
-	double_tab = NULL;
+	tab = NULL;
 	i = ft_tabsize(asci_tab);
 	y_size = i - 1;
 	tmp_char = NULL;
-	if (!(double_tab = (double***)malloc(sizeof(double**) * (i + 1))))
+	if (!(tab = (double***)malloc(sizeof(double**) * (i + 1))))
 		return (NULL);
-	double_tab[i] = NULL;
+	tab[i] = NULL;
 	i = 0;
+	(*dimensions)[1] = 0;
 	while (asci_tab[i])
 	{
-		if (!(double_tab[i] = ft_converse_string_to_double(double_tab[i], asci_tab[i], y_size)))
+		if (!(tab[i] = ft_converse_string_to_double(tab[i], asci_tab[i], y_size, dimensions)))
 		{
-			ft_memdel((void**)double_tab);
+			ft_memdel((void**)tab);
 			return (NULL);
 		}
 		y_size--;
 		i++;
 	}
-	g_max_z = i;
-	return (double_tab);
+	(*dimensions)[2] = i;
+	print_tab_debug(tab);
+	ft_putchar('\n');
+	return (tab = table_transform_handler(tab, CAMERA_SETBACK, *dimensions));
+//	return (tab);
 }
 
-static double		***ft_parse_lines(double fd)
+static double		***ft_parse_lines(double fd, int **dimensions)
 {
 	char	*tmp;
 	char	**map_asci_tab;
@@ -120,16 +120,18 @@ static double		***ft_parse_lines(double fd)
 	if (ret == -1)
 		return (NULL);
 	close(fd);
-	return (ft_parse_chartab(map_asci_tab));
+	return (ft_parse_chartab(map_asci_tab, dimensions));
 }
 
-double				***ft_parsing(char *arg)
+double				***ft_parsing(char *arg, int **dimensions)
 {
 	double		fd;
 	DIR		*test_dir;
 
 	fd = -1;
 	test_dir = NULL;
+	if (!(*dimensions = (int*)malloc(sizeof(int) * 3)))
+		return (NULL);
 	if ((test_dir = opendir(arg)))
 	{
 		ft_putstr("Pass a file not a directory to fdf.\n");
@@ -141,5 +143,5 @@ double				***ft_parsing(char *arg)
 		strerror(errno);
 		return (NULL);
 	}
-	return (scale(ft_parse_lines(fd), g_max_x, g_max_y, g_max_z));
+	return (ft_parse_lines(fd, dimensions));
 }
