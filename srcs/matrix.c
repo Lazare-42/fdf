@@ -24,7 +24,7 @@ double	***matrix_multiplication(double ***tab)
 		j = 0;
 		while(tab[i][j])
 		{
-			X = cy * (sz * Y + cz * X) - sy * Z;
+			X = (cy * (sz * Y + cz * X) - sy * Z);
 			Y = sx * (cy * Z + sy * (sz * Y + cz * X)) + cx * (cz * Y - sz * X);
 			Z = cx * (cy * Z + sy * (sz * Y + cz * X)) - sx * (cz * Y - sz * X);
 			j++;
@@ -104,12 +104,30 @@ double	***table_transform_handler(double ***tab, int input_operation, int *field
 	if (!(g_cos_sinus = (double*)malloc(sizeof(double) * 6)))
 		return (NULL);
 	if (input_operation == CAMERA_SETBACK)
+	{
+		ft_putstr("go back\n");
+		tab = translate(tab, &g_cos_sinus, field_size);
+		tab = matrix_multiplication(tab);
 		tab = first_camera_move(tab, &g_cos_sinus, field_size); 
+	}
 	else if (input_operation == KEY_LEFT || input_operation == KEY_RIGHT ||
 			input_operation == KEY_DOWN || input_operation == KEY_UP)
+	{
+		ft_putstr("key\n");
 		tab = camera_move(tab, input_operation, &g_cos_sinus);
+	}
 	else
+	{
+		ft_putstr("sin_cos\n");
 		modify_sin_cos(input_operation);
+	}
+	printf("\n%G\n", g_cos_sinus[0]);
+	printf("%G\n", g_cos_sinus[1]);
+	printf("%G\n", g_cos_sinus[2]);
+	printf("%G\n", g_cos_sinus[3]);
+	printf("%G\n", g_cos_sinus[4]);
+	printf("%G\n", g_cos_sinus[5]);
 	tab = matrix_multiplication(tab);
+//	print_tab_debug(tab);
 	return (tab);
 }
