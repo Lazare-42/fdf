@@ -11,6 +11,12 @@ static double edge;
 
 static void	modify_sin_cos(double **g_cos_sinus)
 {
+	printf("\n%G\n", (*g_cos_sinus)[0]);
+	printf("%G\n", (*g_cos_sinus)[1]);
+	printf("%G\n", (*g_cos_sinus)[2]);
+	printf("%G\n", (*g_cos_sinus)[3]);
+	printf("%G\n", (*g_cos_sinus)[4]);
+	printf("%G\n", (*g_cos_sinus)[5]);
 	edge = sqrt(setback[0] * setback[0] + setback[1] * setback[1] + setback[2] * setback[2]);
 	if (edge)
 	{
@@ -30,6 +36,12 @@ static void	modify_sin_cos(double **g_cos_sinus)
 		(*g_cos_sinus)[4] = 1;
 		(*g_cos_sinus)[5] = 0;
 	}
+	printf("\n\n%G\n", (*g_cos_sinus)[0]);
+	printf("%G\n", (*g_cos_sinus)[1]);
+	printf("%G\n", (*g_cos_sinus)[2]);
+	printf("%G\n", (*g_cos_sinus)[3]);
+	printf("%G\n", (*g_cos_sinus)[4]);
+	printf("%G\n", (*g_cos_sinus)[5]);
 }
 
 double	***camera_move(double ***tab, int input_operation, double **g_cos_sinus)

@@ -40,10 +40,15 @@ void put_to_screen_string(double *tab, int **screen, int print, int *dimensions)
 	yy = tab[1] * (Y_SIZE / 3) / (dimensions[1] * 4);
 	where_to = xx - (int)yy * X_SIZE;
 	where_to += (X_SIZE / 2) + (Y_SIZE / 2) * X_SIZE;
+	int color;
+
+	color = 0xFF255;
+	int degrade;
+	degrade = 0xFF255;
 	if (where_to >= 0 && where_to <= max_screen_pixel)
 	{
 		if (print)
-			(*screen)[where_to] = 0xFEFFBFF;
+			(*screen)[where_to] = degrade / tab[1];
 		else 
 			(*screen)[where_to] = 0;
 	}
@@ -68,5 +73,4 @@ void print_handler(double ***tab, int print, int **screen, int *dimensions)
 		}
 		i++;
 	}
-	print_tab_debug(tab);
 }

@@ -12,16 +12,16 @@
 # define sz g_cos_sinus[5]
 # define X_SIZE 1680
 # define Y_SIZE 1050  
-# define KEY_LEFT 1232
-# define KEY_RIGHT 1242
-# define KEY_DOWN 1262
-# define KEY_UP 1258
+# define KEY_LEFT 12
+# define KEY_RIGHT 13
+# define KEY_DOWN 14
+# define KEY_UP 15
 # define X_ROTATE_UP 126
 # define X_ROTATE_DOWN 125
-# define Y_ROTATE_UP 123
-# define Y_ROTATE_DOWN 124
-# define Z_ROTATE_UP 1212
-# define Z_ROTATE_DOWN 1212
+# define Y_ROTATE_UP 124
+# define Y_ROTATE_DOWN 123
+# define Z_ROTATE_UP 1259
+# define Z_ROTATE_DOWN 1269
 # define CAMERA_SETBACK 10932
 
 typedef struct 		s_mlx
