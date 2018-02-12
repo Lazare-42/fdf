@@ -49,13 +49,16 @@ int		main(int ac, char **av)
 	}
 	else 
 		return(ft_put_fatal_error(("Pass a file to FDF to launch program")));
+
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, X_SIZE, Y_SIZE, "FDF");
 	mlx.image = mlx_new_image(mlx.mlx, X_SIZE, Y_SIZE);
 	mlx.screen_data = (int*)mlx_get_data_addr(mlx.image, &bpp, &size_line, &endian);
+
 	print_handler(g_tab, 1, &(mlx.screen_data), dimensions);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image, 0, 0);
 	mlx_key_hook(mlx.win, redraw, dimensions);
 	mlx_loop(mlx.mlx);
+
 	return (0);
 }

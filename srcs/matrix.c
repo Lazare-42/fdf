@@ -128,6 +128,5 @@ double	***table_transform_handler(double ***tab, int input_operation, int *field
 	printf("%G\n", g_cos_sinus[4]);
 	printf("%G\n", g_cos_sinus[5]);
 	tab = matrix_multiplication(tab);
-//	print_tab_debug(tab);
 	return (tab);
 }

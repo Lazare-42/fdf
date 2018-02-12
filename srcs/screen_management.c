@@ -32,11 +32,13 @@ void put_to_screen_string(double *tab, int **screen, int print, int *dimensions)
 {
 	int			where_to;
 	static int	max_screen_pixel = X_SIZE * Y_SIZE;
-	ft_putnbr(dimensions[0]);
+	int			xx;
+	int			yy;
 
-	tab[0] *= (X_SIZE / 3) / (dimensions[0]);
-	tab[1] *= (Y_SIZE / 3) / (dimensions[1] * 4);
-	where_to = tab[0] - (int)tab[1] * X_SIZE;
+
+	xx = tab[0] * (X_SIZE / 3) / (dimensions[0]);
+	yy = tab[1] * (Y_SIZE / 3) / (dimensions[1] * 4);
+	where_to = xx - (int)yy * X_SIZE;
 	where_to += (X_SIZE / 2) + (Y_SIZE / 2) * X_SIZE;
 	if (where_to >= 0 && where_to <= max_screen_pixel)
 	{
@@ -66,4 +68,5 @@ void print_handler(double ***tab, int print, int **screen, int *dimensions)
 		}
 		i++;
 	}
+	print_tab_debug(tab);
 }
