@@ -32,6 +32,7 @@ void put_to_screen_string(double *tab, int **screen, int print, int *dimensions)
 {
 	int			where_to;
 	static int	max_screen_pixel = X_SIZE * Y_SIZE;
+	ft_putnbr(dimensions[0]);
 
 	tab[0] *= (X_SIZE / 3) / (dimensions[0]);
 	tab[1] *= (Y_SIZE / 3) / (dimensions[1] * 4);

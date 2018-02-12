@@ -37,7 +37,9 @@ int		main(int ac, char **av)
 	int		endian;
 	int		size_line;
 	int		*dimensions;
+	int 	keycode;
 
+	keycode = 0;
 	g_tab = NULL;
 	dimensions = NULL;
 	if (av[1])
@@ -53,7 +55,7 @@ int		main(int ac, char **av)
 	mlx.screen_data = (int*)mlx_get_data_addr(mlx.image, &bpp, &size_line, &endian);
 	print_handler(g_tab, 1, &(mlx.screen_data), dimensions);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image, 0, 0);
-	mlx_key_hook(mlx.win, (*redraw)(keycode, dimensions), mlx.mlx);
+	mlx_key_hook(mlx.win, redraw, dimensions);
 	mlx_loop(mlx.mlx);
 	return (0);
 }
