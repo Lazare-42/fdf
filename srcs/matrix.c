@@ -13,24 +13,14 @@ static double x_radius = 0;
 static double y_radius = 0;
 static double z_radius = 0;
 
-double	***matrix_multiplication(double ***tab)
+double	*point_multiplication(double *tab)
 {
-	int i;
-	int j;
-
-	i = 0;
-	while (tab[i])
-	{
-		j = 0;
-		while(tab[i][j])
-		{
-			X = (cy * (sz * Y + cz * X) - sy * Z);
-			Y = sx * (cy * Z + sy * (sz * Y + cz * X)) + cx * (cz * Y - sz * X);
-			Z = cx * (cy * Z + sy * (sz * Y + cz * X)) - sx * (cz * Y - sz * X);
-			j++;
-		}
-		i++;
-	}
+	printf("%G\n", tab[0]);
+	printf("%G\n", tab[1]);
+	printf("%G\n", tab[2]);
+	X = (cy * (sz * Y + cz * X) - sy * Z);
+	Y = sx * (cy * Z + sy * (sz * Y + cz * X)) + cx * (cz * Y - sz * X);
+	Z = cx * (cy * Z + sy * (sz * Y + cz * X)) - sx * (cz * Y - sz * X);
 	return (tab);
 }
 
@@ -139,6 +129,5 @@ double	***table_transform_handler(double ***tab, int input_operation, int *field
 	printf("%G\n", g_cos_sinus[3]);
 	printf("%G\n", g_cos_sinus[4]);
 	printf("%G\n", g_cos_sinus[5]);
-	tab = matrix_multiplication(tab);
 	return (tab);
 }

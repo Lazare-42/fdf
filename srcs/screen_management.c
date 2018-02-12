@@ -1,5 +1,6 @@
 #include "../includes/fdf.h"
 #include "../libft/include/libft.h"
+#include <stdlib.h>
 
 void	draw_line(double *from, double *to, int **screen)
 {
@@ -30,25 +31,27 @@ void	draw_line(double *from, double *to, int **screen)
 
 void put_to_screen_string(double *tab, int **screen, int print, int *dimensions)
 {
-	int			where_to;
-	static int	max_screen_pixel = X_SIZE * Y_SIZE;
-	int			xx;
-	int			yy;
+	static double	*point = NULL;
+	static int		max_screen_pixel = X_SIZE * Y_SIZE;
+	int				where_to;
 
-
-	xx = tab[0] * (X_SIZE / 3) / (dimensions[0]);
-	yy = tab[1] * (Y_SIZE / 3) / (dimensions[1] * 4);
-	where_to = xx - (int)yy * X_SIZE;
+	if (!point)
+	{
+		if (!(point = malloc(sizeof(double) * 3)))
+			exit (0);
+	}
+	point[0] = tab[0];
+	point[1] = tab[1];
+	point[2] = tab[2];
+	point = point_multiplication(point);
+	point[0] = point[0] * (X_SIZE / 3) / (dimensions[0]);
+	point[1] = point[1] * (Y_SIZE / 3) / (dimensions[1] * 4);
+	where_to = point[0] - (int)point[1] * X_SIZE;
 	where_to += (X_SIZE / 2) + (Y_SIZE / 2) * X_SIZE;
-	int color;
-
-	color = 0xFF255;
-	int degrade;
-	degrade = 0xFF255;
 	if (where_to >= 0 && where_to <= max_screen_pixel)
 	{
 		if (print)
-			(*screen)[where_to] = degrade / tab[1];
+			(*screen)[where_to] = 0xFF255;
 		else 
 			(*screen)[where_to] = 0;
 	}

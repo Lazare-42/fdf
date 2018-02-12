@@ -1,9 +1,9 @@
 #ifndef FDF_H
 # define FDF_H
 
-# define X tab[i][j][0]
-# define Y tab[i][j][1]
-# define Z tab[i][j][2]
+# define X tab[0]
+# define Y tab[1]
+# define Z tab[2]
 # define cx g_cos_sinus[0]
 # define sx g_cos_sinus[1]
 # define cy g_cos_sinus[2]
@@ -45,5 +45,6 @@ void				print_handler(double ***tab, int print, int **screen, int *dimensions);
 void				draw_line(double *from, double *to, int **screen);
 double				***scale(double ***tab, int max_x, int max_y, int max_z);
 double				***tab_copy(double ***to_cpy, int *dimensions);
+double				*point_multiplication(double *tab);
 
 #endif
