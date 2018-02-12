@@ -16,12 +16,12 @@
 # define KEY_RIGHT 13
 # define KEY_DOWN 14
 # define KEY_UP 15
-# define X_ROTATE_UP 126
-# define X_ROTATE_DOWN 125
-# define Y_ROTATE_UP 124
-# define Y_ROTATE_DOWN 123
-# define Z_ROTATE_UP 1259
-# define Z_ROTATE_DOWN 1269
+# define X_ROTATE_UP 1296
+# define X_ROTATE_DOWN 9125
+# define Y_ROTATE_UP 1294
+# define Y_ROTATE_DOWN 1283
+# define Z_ROTATE_UP 125
+# define Z_ROTATE_DOWN 126
 # define CAMERA_SETBACK 10932
 
 typedef struct 		s_mlx
@@ -44,5 +44,6 @@ double				***translate(double ***tab, double **cos_sinus, int *field_size);
 void				print_handler(double ***tab, int print, int **screen, int *dimensions);
 void				draw_line(double *from, double *to, int **screen);
 double				***scale(double ***tab, int max_x, int max_y, int max_z);
+double				***tab_copy(double ***to_cpy, int *dimensions);
 
 #endif

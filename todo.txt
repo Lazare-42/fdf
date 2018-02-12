@@ -1,0 +1,2 @@
+comme tu le vois jai malloc une copie du tableau car il faut en que je multiplie la matrice de base....pour pouvoir faire une rotation et non pas celle que jai pu modifier !
+Cependant ca segfault
