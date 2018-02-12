@@ -13,24 +13,11 @@ static double x_radius = 0;
 static double y_radius = 0;
 static double z_radius = 0;
 
-double	***matrix_multiplication(double ***tab)
+double	*matrix_multiplication(double *tab)
 {
-	int i;
-	int j;
-
-	i = 0;
-	while (tab[i])
-	{
-		j = 0;
-		while(tab[i][j])
-		{
-			X = (cy * (sz * Y + cz * X) - sy * Z);
-			Y = sx * (cy * Z + sy * (sz * Y + cz * X)) + cx * (cz * Y - sz * X);
-			Z = cx * (cy * Z + sy * (sz * Y + cz * X)) - sx * (cz * Y - sz * X);
-			j++;
-		}
-		i++;
-	}
+	X = (cy * (sz * Y + cz * X) - sy * Z);
+	Y = sx * (cy * Z + sy * (sz * Y + cz * X)) + cx * (cz * Y - sz * X);
+	Z = cx * (cy * Z + sy * (sz * Y + cz * X)) - sx * (cz * Y - sz * X);
 	return (tab);
 }
 
@@ -52,7 +39,7 @@ void	negative_radius_value(int input_operation)
 	}
 	else if (input_operation == Z_ROTATE_DOWN)
 	{
-	ft_putstr("hi");
+		ft_putstr("hi");
 		if (z_radius - 0.5 < 0)
 			z_radius += M_PI * 2 - 0.5;
 		else
@@ -104,12 +91,12 @@ double	***table_transform_handler(double ***tab, int input_operation, int *field
 		return (tab);
 	if (!(g_cos_sinus = (double*)malloc(sizeof(double) * 6)))
 		return (NULL);
-		(g_cos_sinus)[0] = 1;
-		(g_cos_sinus)[1] = 0;
-		(g_cos_sinus)[2] = 1;
-		(g_cos_sinus)[3] = 0;
-		(g_cos_sinus)[4] = 1;
-		(g_cos_sinus)[5] = 0;
+	(g_cos_sinus)[0] = 1;
+	(g_cos_sinus)[1] = 0;
+	(g_cos_sinus)[2] = 1;
+	(g_cos_sinus)[3] = 0;
+	(g_cos_sinus)[4] = 1;
+	(g_cos_sinus)[5] = 0;
 	if (input_operation == CAMERA_SETBACK)
 	{
 		tab = first_camera_move(tab, &g_cos_sinus, field_size); 
@@ -136,6 +123,5 @@ double	***table_transform_handler(double ***tab, int input_operation, int *field
 	printf("%G\n", g_cos_sinus[3]);
 	printf("%G\n", g_cos_sinus[4]);
 	printf("%G\n", g_cos_sinus[5]);
-	tab = matrix_multiplication(tab);
 	return (tab);
 }
