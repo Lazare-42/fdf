@@ -19,7 +19,7 @@
 static double ***g_tab = NULL;
 static t_mlx mlx;
 
-int		my_key_funct(int keycode, int *dimensions)
+int		redraw(int keycode, int *dimensions)
 {
 	if (keycode == 53)
 		exit(0);
@@ -53,7 +53,7 @@ int		main(int ac, char **av)
 	mlx.screen_data = (int*)mlx_get_data_addr(mlx.image, &bpp, &size_line, &endian);
 	print_handler(g_tab, 1, &(mlx.screen_data), dimensions);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image, 0, 0);
-	mlx_key_hook(mlx.win, my_key_funct, mlx.mlx);
+	mlx_key_hook(mlx.win, (*redraw)(keycode, dimensions), mlx.mlx);
 	mlx_loop(mlx.mlx);
 	return (0);
 }
