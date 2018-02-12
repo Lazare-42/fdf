@@ -46,10 +46,9 @@ void put_to_screen_string(double *tab, int **screen, int print, int *dimensions)
 	point[2] = tab[2];
 	point = matrix_multiplication(point);
 	point[0] = point[0] * (X_SIZE / 3) / (dimensions[0]);
-	point[1] = point[1] * (Y_SIZE / 3) / (dimensions[1] * 4);
+	point[1] = point[1] * (Y_SIZE / 3) / (dimensions[1]);
 	where_to = point[0] - (int)point[1] * X_SIZE;
-	where_to += (X_SIZE / 2) + (Y_SIZE / 2) * X_SIZE;
-//	printf("%G\n", point[0]);
+	where_to += (X_SIZE / 1 / 3) + (Y_SIZE * 2 / 3) * X_SIZE;
 	if (where_to >= 0 && where_to <= max_screen_pixel)
 	{
 		if (print)

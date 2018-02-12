@@ -25,33 +25,33 @@ void	negative_radius_value(int input_operation)
 {
 	if (input_operation == X_ROTATE_DOWN)
 	{
-		if (x_radius - 0.5 < 0)
-			x_radius += M_PI * 2 - 0.5;
+		if (x_radius - 0.05 < 0)
+			x_radius += M_PI * 2 - 0.05;
 		else
-			x_radius -= 0.5;
+			x_radius -= 0.05;
 	}
 	else if (input_operation == Y_ROTATE_DOWN)
 	{
-		if (y_radius - 0.5 < 0)
-			y_radius += M_PI * 2 - 0.5;
+		if (y_radius - 0.05 < 0)
+			y_radius += M_PI * 2 - 0.05;
 		else
-			y_radius -= 0.5;
+			y_radius -= 0.05;
 	}
 	else if (input_operation == Z_ROTATE_DOWN)
 	{
 		ft_putstr("hi");
-		if (z_radius - 0.5 < 0)
-			z_radius += M_PI * 2 - 0.5;
+		if (z_radius - 0.05 < 0)
+			z_radius += M_PI * 2 - 0.05;
 		else
-			y_radius -= 0.5;
+			y_radius -= 0.05;
 	}
 }
 
 void	modify_sin_cos(int input_operation)
 {
-	x_radius = (input_operation == X_ROTATE_UP) ? x_radius + 0.5 : x_radius;
-	y_radius = (input_operation == Y_ROTATE_UP) ? y_radius + 0.5 : y_radius;
-	z_radius = (input_operation == Z_ROTATE_UP) ? z_radius + 0.5 : z_radius;
+	x_radius = (input_operation == X_ROTATE_UP) ? x_radius + 0.05 : x_radius;
+	y_radius = (input_operation == Y_ROTATE_UP) ? y_radius + 0.05 : y_radius;
+	z_radius = (input_operation == Z_ROTATE_UP) ? z_radius + 0.05 : z_radius;
 	if (input_operation == X_ROTATE_DOWN || input_operation == Y_ROTATE_DOWN ||
 			input_operation == Z_ROTATE_DOWN)
 		negative_radius_value(input_operation);
@@ -89,14 +89,17 @@ double	***table_transform_handler(double ***tab, int input_operation, int *field
 {
 	if (!(check_if_input(input_operation)))
 		return (tab);
-	if (!(g_cos_sinus = (double*)malloc(sizeof(double) * 6)))
-		return (NULL);
-	(g_cos_sinus)[0] = 1;
-	(g_cos_sinus)[1] = 0;
-	(g_cos_sinus)[2] = 1;
-	(g_cos_sinus)[3] = 0;
-	(g_cos_sinus)[4] = 1;
-	(g_cos_sinus)[5] = 0;
+	if (!g_cos_sinus)
+	{
+		if (!(g_cos_sinus = (double*)malloc(sizeof(double) * 6)))
+			return (NULL);
+		(g_cos_sinus)[0] = 1;
+		(g_cos_sinus)[1] = 0;
+		(g_cos_sinus)[2] = 1;
+		(g_cos_sinus)[3] = 0;
+		(g_cos_sinus)[4] = 1;
+		(g_cos_sinus)[5] = 0;
+	}
 	if (input_operation == CAMERA_SETBACK)
 	{
 		tab = first_camera_move(tab, &g_cos_sinus, field_size); 
@@ -117,11 +120,5 @@ double	***table_transform_handler(double ***tab, int input_operation, int *field
 		// this else leaves only the conditions for axis tilting
 		modify_sin_cos(input_operation);
 	}
-	printf("\n%G\n", g_cos_sinus[0]);
-	printf("%G\n", g_cos_sinus[1]);
-	printf("%G\n", g_cos_sinus[2]);
-	printf("%G\n", g_cos_sinus[3]);
-	printf("%G\n", g_cos_sinus[4]);
-	printf("%G\n", g_cos_sinus[5]);
 	return (tab);
 }

@@ -20,8 +20,8 @@
 # define X_ROTATE_DOWN 125
 # define Y_ROTATE_UP 124
 # define Y_ROTATE_DOWN 123
-# define Z_ROTATE_UP 1259
-# define Z_ROTATE_DOWN 1269
+# define Z_ROTATE_UP 6
+# define Z_ROTATE_DOWN 7
 # define CAMERA_SETBACK 10932
 
 typedef struct 		s_mlx

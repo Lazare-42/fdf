@@ -104,9 +104,10 @@ double	***first_camera_move(double ***tab, double **g_cos_sinus, int *field_size
 
 	i = -1;
 	edge = 1;
-	setback[0] = field_size[0];
-	setback[1] = field_size[1] * 2;
-	setback[2] = field_size[2];
+	(void)field_size;
+	setback[0] = 0;
+	setback[1] = 0;
+	setback[2] = 0;
 	while (tab[++i])
 	{
 		j = -1;
