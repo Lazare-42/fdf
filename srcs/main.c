@@ -21,8 +21,6 @@ static t_mlx mlx;
 
 int		redraw(int keycode, int *dimensions)
 {
-	ft_putnbr(keycode);
-	ft_putchar(' ');
 	if (keycode == 53)
 		exit(0);
 	print_handler(g_tab, 0, &(mlx.screen_data), dimensions);

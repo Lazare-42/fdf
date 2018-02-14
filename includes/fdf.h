@@ -10,8 +10,8 @@
 # define sy g_cos_sinus[3]
 # define cz g_cos_sinus[4]
 # define sz g_cos_sinus[5]
-# define X_SIZE 1680
-# define Y_SIZE 1050  
+# define X_SIZE 1920
+# define Y_SIZE 1200  
 # define KEY_LEFT 12
 # define KEY_RIGHT 13
 # define KEY_DOWN 14
@@ -40,7 +40,6 @@ double				***create_rotation_matrix(double ***g_rotate_matrix);
 double				***table_transform_handler(double ***tab,
 		int input_operation, int *camera_setback);
 double				***first_camera_move(double ***tab, double **cos_sinus, int *camera_setback);
-double				***translate(double ***tab, double **cos_sinus, int *field_size);
 void				print_handler(double ***tab, int print, int **screen, int *dimensions);
 void				draw_line(double *from, double *to, int **screen);
 double				***scale(double ***tab, int max_x, int max_y, int max_z);

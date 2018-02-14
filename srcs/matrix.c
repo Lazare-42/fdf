@@ -39,7 +39,6 @@ void	negative_radius_value(int input_operation)
 	}
 	else if (input_operation == Z_ROTATE_DOWN)
 	{
-		ft_putstr("hi");
 		if (z_radius - 0.05 < 0)
 			z_radius += M_PI * 2 - 0.05;
 		else
@@ -58,17 +57,17 @@ void	modify_sin_cos(int input_operation)
 	if (input_operation == X_ROTATE_UP || input_operation == X_ROTATE_DOWN)
 	{
 		cx = cos(x_radius);
-		sx = sqrt(1 - cx * cx);
+		sx = sin(x_radius);
 	}
 	else if (input_operation == Y_ROTATE_UP || input_operation == Y_ROTATE_DOWN)
 	{
 		cy = cos(y_radius);
-		sy = sqrt(1 - cy * cy);
+		sy = sin(y_radius);
 	}
 	else if (input_operation == Z_ROTATE_UP || input_operation == Z_ROTATE_DOWN)
 	{
 		cz = cos(z_radius);
-		sz = sqrt(1 - cz * cz);
+		sz = sin(z_radius);
 	}
 }
 

@@ -71,7 +71,7 @@ double	***camera_move(double ***tab, int input_operation, double **g_cos_sinus)
 }
 
 
-double	***translate(double ***tab, double **g_cos_sinus, int *field_size)
+double	***translate(double ***tab, int *field_size)
 {
 	int i;
 	int j;
@@ -82,18 +82,12 @@ double	***translate(double ***tab, double **g_cos_sinus, int *field_size)
 		j = 0;
 		while (tab[i][j])
 		{
-			X -= field_size[0] / 2;
-			Z -= field_size[2] / 2;
+			tab[i][j][0] -= (field_size[0] - 1) / 2;
+			tab[i][j][1] -= field_size[2] / 2;
 			j++;
 		}
 		i++;
 	}
-	(*g_cos_sinus)[0] = 1;
-	(*g_cos_sinus)[1] = 0;
-	(*g_cos_sinus)[2] = 1;
-	(*g_cos_sinus)[3] = 0;
-	(*g_cos_sinus)[4] = 1;
-	(*g_cos_sinus)[5] = 0;
 	return (tab);
 }
 
@@ -119,5 +113,5 @@ double	***first_camera_move(double ***tab, double **g_cos_sinus, int *field_size
 		}
 	}
 	modify_sin_cos(g_cos_sinus);
-	return (tab);
+	return (translate(tab, field_size));
 }
