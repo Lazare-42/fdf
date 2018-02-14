@@ -18,6 +18,8 @@ double	*matrix_multiplication(double *tab)
 	X = (cy * (sz * Y + cz * X) - sy * Z);
 	Y = sx * (cy * Z + sy * (sz * Y + cz * X)) + cx * (cz * Y - sz * X);
 	Z = cx * (cy * Z + sy * (sz * Y + cz * X)) - sx * (cz * Y - sz * X);
+	X /= Z;
+	Y /= Z;
 	return (tab);
 }
 
