@@ -36,7 +36,7 @@ static double		**converse_final(double **tab, char **tmp, int y, int **dimension
 		x++;
 	}
 	(*dimensions)[0] = x;
-	ft_memdel((void**)tmp);
+	ft_tabdel(tmp);
 	return (tab);
 }
 
@@ -56,7 +56,7 @@ static double		**ft_converse_string_to_double(double **tab, char *line, int y_si
 	if (nbr != nbr_len || (!(tab = (double**)malloc(sizeof(double*) * (nbr_len + 1)))))
 	{
 		ft_putstr("Invalid argument format.\n");
-		ft_memdel((void**)tmp);
+		ft_tabdel(tmp);
 		return (NULL);
 	}
 	tab[nbr_len] = NULL;
@@ -67,13 +67,11 @@ static double		***ft_parse_chartab(char **asci_tab, int **dimensions)
 {
 	int			i;
 	int			y_size;
-	double		*tmp_char;
 	double		***tab;
 
 	tab = NULL;
 	i = ft_tabsize(asci_tab);
 	y_size = i - 1;
-	tmp_char = NULL;
 	if (!(tab = (double***)malloc(sizeof(double**) * (i + 1))))
 		return (NULL);
 	tab[i] = NULL;
@@ -84,13 +82,14 @@ static double		***ft_parse_chartab(char **asci_tab, int **dimensions)
 		if (!(tab[i] = ft_converse_string_to_double(tab[i], asci_tab[i], y_size, dimensions)))
 		{
 			ft_memdel((void**)tab);
+			// Modify this memdel to really delete
 			return (NULL);
 		}
 		y_size--;
 		i++;
 	}
 	(*dimensions)[2] = i;
-//	return (tab);
+	ft_tabdel(asci_tab);
 	return (tab = table_transform_handler(tab, CAMERA_SETBACK, *dimensions));
 }
 

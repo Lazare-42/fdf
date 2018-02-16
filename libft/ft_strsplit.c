@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "include/libft.h"
+#include "includes/libft.h"
 
 static char	*ft_str_alloccpy(char const *src, size_t size)
 {

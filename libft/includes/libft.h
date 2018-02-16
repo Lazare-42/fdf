@@ -96,7 +96,7 @@ int					get_next_line(const int fd, char **line, char tofind);
 int					ft_advance_str_for_quotes(char *str, int i);
 char				*ft_strdup_to_quote(char *src, char *dst);
 char				*ft_make_blocks_for_quotes(char *str, int *i);
-void				ft_tabdel(char **str);
+void				ft_tabdel(void	**str);
 char				**ft_tabdup(char **str, int size);
 int					ft_tabsize(char **tab);
 void				ft_putwhites(int i);

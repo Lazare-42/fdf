@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/libft.h"
+#include "includes/libft.h"
 
 char	**ft_tab_replacestr(char ***tab, char **to_replace, char *cmp)
 {

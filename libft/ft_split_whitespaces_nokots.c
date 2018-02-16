@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "./include/libft.h"
+#include "./includes/libft.h"
 
 static int		count_words(char *str)
 {

@@ -1,4 +1,4 @@
-#include "./include/libft.h"
+#include "./includes/libft.h"
 
 int		ft_put_fatal_error(char *str)
 {
