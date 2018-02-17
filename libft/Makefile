@@ -117,9 +117,11 @@ mkbin:
 	@mkdir -p $(ODIR)
 
 $(NAME): $(OBJECT)
-	$(ARCH) $(NAME) $(OBJECT)
+	@ echo "[35m Archiving library...[0m"
+	@$(ARCH) $(NAME) $(OBJECT)
 
 $(ODIR)/%.o : $(SDIR)/%.c
+	@ echo "[32m Recompiling objects...[0m"
 	$(CC) -o $@ $<
 
 clean: 
