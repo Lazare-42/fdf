@@ -1,5 +1,5 @@
 #include "../includes/fdf.h"
-#include "../libft/include/libft.h"
+#include "../libft/includes/libft.h"
 #include <stdlib.h>
 
 void	draw_line(double *from, double *to, int **screen)

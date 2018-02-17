@@ -97,24 +97,33 @@ SRC = ft_atoi.c \
 	  ./ft_debug.c \
 	  ./ft_put_fatal_error.c \
 
-OBJECT = $(SRC:.c=.o)
+ODIR = bin
 
-CLEAN = /bin/rm -f
+SDIR = srcs
 
-CC = gcc -Wall -Wextra -Werror -c 
+SRCS = $(addprefix $(SDIR)/, $(SRC:.c=.o))
+
+OBJECT = $(addprefix $(ODIR)/, $(SRC:.c=.o))
+
+CLEAN = /bin/rm -rf $(ODIR)
+
+CC = gcc -Wall -Wextra -Werror -c
 
 ARCH = ar rc
 
-all: $(NAME)
+all: mkbin $(NAME)
+
+mkbin:
+	@mkdir -p $(ODIR)
 
 $(NAME): $(OBJECT)
-	@- $(CC) $(SRC)
-	@- $(ARCH) $(NAME) $(OBJECT)
+	$(ARCH) $(NAME) $(OBJECT)
 
-$(OBJECT): %.o: %.c
+$(ODIR)/%.o : $(SDIR)/%.c
+	$(CC) -o $@ $<
 
 clean: 
-	@-$(CLEAN) $(OBJECT)
+	@-$(CLEAN)
 
 fclean: clean
 	@-$(CLEAN) $(NAME)

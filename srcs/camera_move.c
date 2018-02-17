@@ -1,7 +1,7 @@
 #include "fdf.h"
 #include <math.h>
 #include <stdio.h>
-#include "../libft/include/libft.h"
+#include "../libft/includes/libft.h"
 
 // setback est la taille des reculs par rapport a la position 0,0,0 - donne ainsi
 // les angles de rotation pour chaque cote 

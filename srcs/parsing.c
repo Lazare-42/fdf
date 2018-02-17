@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/include/libft.h"
+#include "../libft/includes/libft.h"
 #include "../includes/fdf.h"
 #include <fcntl.h>
 #include <errno.h>
@@ -36,7 +36,7 @@ static double		**converse_final(double **tab, char **tmp, int y, int **dimension
 		x++;
 	}
 	(*dimensions)[0] = x;
-	ft_tabdel(tmp);
+	ft_tabdel((void**)tmp);
 	return (tab);
 }
 
@@ -56,7 +56,7 @@ static double		**ft_converse_string_to_double(double **tab, char *line, int y_si
 	if (nbr != nbr_len || (!(tab = (double**)malloc(sizeof(double*) * (nbr_len + 1)))))
 	{
 		ft_putstr("Invalid argument format.\n");
-		ft_tabdel(tmp);
+		ft_tabdel((void**)tmp);
 		return (NULL);
 	}
 	tab[nbr_len] = NULL;
@@ -89,7 +89,7 @@ static double		***ft_parse_chartab(char **asci_tab, int **dimensions)
 		i++;
 	}
 	(*dimensions)[2] = i;
-	ft_tabdel(asci_tab);
+	ft_tabdel((void**)asci_tab);
 	return (tab = table_transform_handler(tab, CAMERA_SETBACK, *dimensions));
 }
 

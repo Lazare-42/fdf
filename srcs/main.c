@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minilibx_macos/mlx.h"
-#include "../libft/include/libft.h"
+#include "../libft/includes/libft.h"
 #include <unistd.h>
 #include "../includes/fdf.h"
 #include <stdlib.h>

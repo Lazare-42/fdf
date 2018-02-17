@@ -1,5 +1,5 @@
 #include "../includes/fdf.h"
-#include "../libft/include/libft.h"
+#include "../libft/includes/libft.h"
 
 void	print_tab_debug(double ***TABTAB)
 {
