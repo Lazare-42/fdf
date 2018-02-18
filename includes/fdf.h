@@ -44,5 +44,6 @@ void				draw_line(double *from, double *to, int **screen);
 double				***scale(double ***tab, int max_x, int max_y, int max_z);
 double				*matrix_multiplication(double *tab);
 double				***center_matrix(double ***tab, int *field_size);
+double				***create_temp_tab(int	*dimensions, double ***tocopy);
 
 #endif

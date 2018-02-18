@@ -6,6 +6,7 @@ SOURCES = camera_move.c \
 		  parsing.c \
 		  screen_management.c \
 		  center_matrix.c \
+		  tab_operations.c \
 
 
 LIBDIR = libft

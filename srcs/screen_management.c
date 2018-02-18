@@ -59,12 +59,20 @@ void put_to_screen_string(double *tab, int **screen, int print, int *dimensions)
 	}
 }
 
-void print_handler(double ***tab, int print, int **screen, int *dimensions)
+void print_handler(double ***tabtab, int print, int **screen, int *dimensions)
 {
 	int i;
 	int j;
 
 	i = 0;
+	double ***tab;
+
+	tab = NULL;
+	tab = create_temp_tab(dimensions, tabtab);  
+	ft_putnbr(dimensions[0]);
+	ft_putchar('\n');
+	ft_putnbr(dimensions[2]);
+	ft_putchar('\n');
 	while (tab[i])
 	{
 		j = 0;
@@ -76,6 +84,12 @@ void print_handler(double ***tab, int print, int **screen, int *dimensions)
 				put_to_screen_string(tab[i][j], screen, 0, dimensions);
 			j++;
 		}
+		i++;
+	}
+	i = 0;
+	while (tab[i])
+	{
+		ft_tabdel((void**)tab);
 		i++;
 	}
 	ft_memdel((void**)&point);
