@@ -86,7 +86,7 @@ int		check_if_input(int input_operation)
 		return (0);
 }
 
-double	***table_transform_handler(double ***tab, int input_operation, int *field_size)
+double	***table_transform_handler(double ***tab, int input_operation)
 {
 	if (!(check_if_input(input_operation)))
 		return (tab);
@@ -103,8 +103,6 @@ double	***table_transform_handler(double ***tab, int input_operation, int *field
 	}
 	if (input_operation == CAMERA_SETBACK)
 	{
-	//	tab = first_camera_move(tab, &g_cos_sinus, field_size); 
-		modify_sin_cos(g_cos_sinus);
 		x_radius = acos(g_cos_sinus[0]);
 		y_radius = acos(g_cos_sinus[2]);
 		z_radius = acos(g_cos_sinus[4]);

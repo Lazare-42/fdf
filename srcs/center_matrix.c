@@ -17,5 +17,5 @@ double	***center_matrix(double ***tab, int *field_size)
 		}
 		i++;
 	}
-	return (tab = table_transform_handler(tab, CAMERA_SETBACK, field_size));
+	return (tab = table_transform_handler(tab, CAMERA_SETBACK));
 }

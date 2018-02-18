@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 12:07:08 by lazrossi          #+#    #+#             */
-/*   Updated: 2017/12/22 12:07:35 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/18 10:27:23 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		redraw(int keycode, int *dimensions)
 	if (keycode == 53)
 		exit(0);
 	print_handler(g_tab, 0, &(mlx.screen_data), dimensions);
-	g_tab = table_transform_handler(g_tab, keycode, NULL);
+	g_tab = table_transform_handler(g_tab, keycode);
 	print_handler(g_tab, 1, &(mlx.screen_data), dimensions);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image, 0, 0);
 	return (0);

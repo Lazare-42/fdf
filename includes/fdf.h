@@ -37,8 +37,7 @@ void				print_tab_debug(double ***TABTAB);
 double				***camera_move(double ***tab, int input_operation,
 		double **cos_sinus);
 double				***create_rotation_matrix(double ***g_rotate_matrix);
-double				***table_transform_handler(double ***tab,
-		int input_operation, int *camera_setback);
+double				***table_transform_handler(double ***tab,int input_op);
 double				***first_camera_move(double ***tab, double **cos_sinus, int *camera_setback);
 void				print_handler(double ***tab, int print, int **screen, int *dimensions);
 void				draw_line(double *from, double *to, int **screen);
