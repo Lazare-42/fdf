@@ -44,5 +44,6 @@ void				print_handler(double ***tab, int print, int **screen, int *dimensions);
 void				draw_line(double *from, double *to, int **screen);
 double				***scale(double ***tab, int max_x, int max_y, int max_z);
 double				*matrix_multiplication(double *tab);
+double				***center_matrix(double ***tab, int *field_size);
 
 #endif

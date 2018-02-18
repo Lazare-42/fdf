@@ -1,12 +1,11 @@
 NAME = fdf
 
-SOURCES = ./camera_move.c \
-		  ./main.c \
-		  ./matrix.c \
-		  ./parsing.c \
-		  ./print_tab_debug.c \
-		  ./tab_malloc.c \
-		  ./screen_management.c \
+SOURCES = camera_move.c \
+		  main.c \
+		  matrix.c \
+		  parsing.c \
+		  screen_management.c \
+		  center_matrix.c \
 
 
 LIBDIR = libft
@@ -25,8 +24,8 @@ OK = echo "[32m OK ✓ [0m"
 all: lib mkbin $(NAME)
 
 lib:
-	@echo "Compiling libft ..."
-	@-make -C $(LIBDIR)
+	@echo "Archiving libft ..."
+	@make -C $(LIBDIR)
 	@$(OK)
 
 mkbin:
@@ -34,14 +33,16 @@ mkbin:
 
 
 $(NAME): $(OBJS)
-	@echo "Compiling  ..."
-	@-$(CC) $(CFLAGS)  -o $(NAME) $(OBJS) -I$(INCDIR) $(LDFLAGS) $(LNCURSES)
+	@ echo "[35m Compiling FDF...[0m"
+	@$(CC) $(CFLAGS)  -o $(NAME) $(OBJS) -I$(INCDIR) $(LDFLAGS) $(LNCURSES)
 	@$(OK)
 
 $(ODIR)/%.o : $(SDIR)/%.c
-	$(CC) $(CFLAGS) -c -o $@ $< -I$(INCDIR)
+	@ echo "[34m Assembling FDF object: [0m" $@
+	@ $(CC) $(CFLAGS) -c -o $@ $< -I$(INCDIR)
 
 clean:
+	@ echo "[31m Cleaning FDF... [0m"
 	@/bin/rm -rf $(ODIR)
 	@make -C $(LIBDIR) clean
 

@@ -2,6 +2,8 @@
 #include "../libft/includes/libft.h"
 #include <stdlib.h>
 
+static	double	*point = NULL;
+
 void	draw_line(double *from, double *to, int **screen)
 {
 	double dx;
@@ -34,7 +36,6 @@ void put_to_screen_string(double *tab, int **screen, int print, int *dimensions)
 {
 	int			where_to;
 	static	int	max_screen_pixel = X_SIZE * Y_SIZE;
-	static	double	*point = NULL;
 
 	if (!point)
 	{
@@ -45,14 +46,14 @@ void put_to_screen_string(double *tab, int **screen, int print, int *dimensions)
 	point[1] = tab[1];
 	point[2] = tab[2];
 	point = matrix_multiplication(point);
-	point[0] = point[0] * (X_SIZE / 3) / (dimensions[0] * 2);
-	point[1] = point[1] * (Y_SIZE / 3) / (dimensions[1] * 2);
+	point[0] = point[0] * (X_SIZE / 3) / (dimensions[0]);
+	point[1] = point[1] * (Y_SIZE / 3) / (dimensions[1]);
 	where_to = point[0] - (int)point[1] * X_SIZE;
 	where_to += (X_SIZE / 2) + (Y_SIZE / 2) * X_SIZE;
 	if (where_to >= 0 && where_to <= max_screen_pixel)
 	{
 		if (print)
-			(*screen)[where_to] = 0xFF255;
+			(*screen)[where_to] = 0xFF400;
 		else 
 			(*screen)[where_to] = 0;
 	}
@@ -77,4 +78,5 @@ void print_handler(double ***tab, int print, int **screen, int *dimensions)
 		}
 		i++;
 	}
+	ft_memdel((void**)&point);
 }

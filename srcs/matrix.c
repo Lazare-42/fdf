@@ -18,6 +18,8 @@ double	*matrix_multiplication(double *tab)
 	X = (cy * (sz * Y + cz * X) - sy * Z);
 	Y = sx * (cy * Z + sy * (sz * Y + cz * X)) + cx * (cz * Y - sz * X);
 	Z = cx * (cy * Z + sy * (sz * Y + cz * X)) - sx * (cz * Y - sz * X);
+//	X /= Z;
+//	Y /= Z;
 	return (tab);
 }
 
@@ -101,7 +103,8 @@ double	***table_transform_handler(double ***tab, int input_operation, int *field
 	}
 	if (input_operation == CAMERA_SETBACK)
 	{
-		tab = first_camera_move(tab, &g_cos_sinus, field_size); 
+	//	tab = first_camera_move(tab, &g_cos_sinus, field_size); 
+		modify_sin_cos(g_cos_sinus);
 		x_radius = acos(g_cos_sinus[0]);
 		y_radius = acos(g_cos_sinus[2]);
 		z_radius = acos(g_cos_sinus[4]);

@@ -90,7 +90,7 @@ static double		***ft_parse_chartab(char **asci_tab, int **dimensions)
 	}
 	(*dimensions)[2] = i;
 	ft_tabdel((void**)asci_tab);
-	return (tab = table_transform_handler(tab, CAMERA_SETBACK, *dimensions));
+	return (tab = center_matrix(tab, *dimensions));
 }
 
 static double		***ft_parse_lines(double fd, int **dimensions)
