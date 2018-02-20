@@ -25,9 +25,7 @@ OK = echo "[32m OK ✓ [0m"
 all: lib mkbin $(NAME)
 
 lib:
-	@echo "Archiving libft ..."
 	@make -C $(LIBDIR)
-	@$(OK)
 
 mkbin:
 	@mkdir -p $(ODIR)

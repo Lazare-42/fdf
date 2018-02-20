@@ -6,7 +6,7 @@
 #    By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/27 14:56:05 by lazrossi          #+#    #+#              #
-#    Updated: 2018/02/20 10:33:33 by lazrossi         ###   ########.fr        #
+#    Updated: 2018/02/20 15:05:37 by lazrossi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,6 +120,7 @@ mkbin:
 $(NAME): $(OBJECT)
 	@ echo "[35m Archiving library...[0m"
 	@$(ARCH) $(NAME) $(OBJECT)
+	@$(OK)
 
 $(ODIR)/%.o : $(SDIR)/%.c
 	@ echo "[34m Assembling libft object: [0m" $@
