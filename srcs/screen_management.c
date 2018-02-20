@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 10:05:04 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/20 15:54:55 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/20 17:17:23 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,55 +32,21 @@ static void	put_screen_str(int **screen, int print)
 
 void	draw_line(double *from, double *to, int **screen, int print)
 {
-	double	t;
-	double	y;
-	double	x;
-	double	tmp;
+	int dx;
+	int dy;
+	int i;
+	int xinc;
+	int yinc;
+	int cumul;
 
-	t = 0;
-	int steep;
-
-	steep = 0;
-	if ((from[0] - to[0]) < (from[1] - to[1]))
-	{
-		tmp = from[0];
-		from[0] = from[1];
-		from[1] = tmp;
-
-		tmp = to[0];
-		to[0] = to[1];
-		to[1] = tmp;
-		steep = 1;
-	}
-	if (from[0] > to[0])
-	{
-		tmp = from[0];
-		from[0] = to[0];
-		to[0] = tmp;
-
-
-		tmp = from[1];
-		from[1] = to[1];
-		to[1] = tmp;
-	}
-	x = from[0];
-	while (x <= to[0])
-	{
-		x++;
-		t = (double)((x - from[0]) / (double)(to[0] - from[0]));
-		y = (double)(from[1] * (1 - t)) + (double)to[1] * t;
-		if (steep)
-		{
-			point[0] = y;
-			point[1] = x;
-		}
-		else
-		{
-			point[0] = x;
-			point[1] = y;
-		}
+	point[0] = from[0];
+	point[1] = from[1];
+	dx = to[0] - from[0];
+	dy = to[1] - from[1];
+	xinc = (dx > 0) ? 1 : -1;
+	yinc = (dy > 0) ? 1 : -1;
+	dx - 
 		put_screen_str(screen, print);
-	}
 }
 
 static void	put_to_screen_string(double ***tab, int **screen, int print, int *dimensions)
