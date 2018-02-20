@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 10:05:04 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/20 17:17:23 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/20 17:39:56 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,48 @@ void	draw_line(double *from, double *to, int **screen, int print)
 	int yinc;
 	int cumul;
 
-	point[0] = from[0];
-	point[1] = from[1];
-	dx = to[0] - from[0];
-	dy = to[1] - from[1];
+	point[0] = (int)from[0];
+	point[1] = (int)from[1];
+	dx = (int)(to[0] - from[0]);
+	dy = (int)(to[1] - from[1]);
 	xinc = (dx > 0) ? 1 : -1;
 	yinc = (dy > 0) ? 1 : -1;
-	dx - 
-		put_screen_str(screen, print);
+	dx = abs(dx);
+	dy = abs(dy);
+	put_screen_str(screen, print);
+	i = 1;
+	if (dx > dy)
+	{
+		cumul = dx / 2;
+		while (i <= dx)
+		{
+			point[0] += xinc;
+			cumul += dy;
+			if (cumul >= dx)
+			{
+				cumul -= dx;
+				point[1] += yinc;
+			}
+			put_screen_str(screen, print);
+			i++;
+		}
+	}
+	else
+	{
+		cumul = dy / 2;
+		while(i <= dy)
+		{
+			point[1] += yinc;
+			cumul += dx;
+			if (cumul >= dy)
+			{
+				cumul -= dy;
+				point[0] += xinc;
+			}
+			put_screen_str(screen, print);
+			i++;
+		}
+	}
 }
 
 static void	put_to_screen_string(double ***tab, int **screen, int print, int *dimensions)
