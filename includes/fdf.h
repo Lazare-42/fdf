@@ -1,17 +1,17 @@
 #ifndef FDF_H
 # define FDF_H
 
-# define X tab[0]
-# define Y tab[1]
-# define Z tab[2]
+# define X tab[i][j][0]
+# define Y tab[i][j][1]
+# define Z tab[i][j][2]
 # define cx g_cos_sinus[0]
 # define sx g_cos_sinus[1]
 # define cy g_cos_sinus[2]
 # define sy g_cos_sinus[3]
 # define cz g_cos_sinus[4]
 # define sz g_cos_sinus[5]
-# define X_SIZE 1920
-# define Y_SIZE 1200  
+# define X_SIZE 2560
+# define Y_SIZE 1440
 # define KEY_LEFT 12
 # define KEY_RIGHT 13
 # define KEY_DOWN 14
@@ -40,9 +40,8 @@ double				***create_rotation_matrix(double ***g_rotate_matrix);
 double				***table_transform_handler(double ***tab,int input_op);
 double				***first_camera_move(double ***tab, double **cos_sinus, int *camera_setback);
 void				print_handler(double ***tab, int print, int **screen, int *dimensions);
-void				draw_line(double *from, double *to, int **screen);
 double				***scale(double ***tab, int max_x, int max_y, int max_z);
-double				*matrix_multiplication(double *tab);
+double				***matrix_multiplication(double ***tab, int *dimensions);
 double				***center_matrix(double ***tab, int *field_size);
 double				***create_temp_tab(int	*dimensions, double ***tocopy);
 

@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 15:27:37 by lazrossi          #+#    #+#             */
-/*   Updated: 2017/12/30 21:41:44 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/20 10:33:56 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,5 @@ char				**ft_tab_replacestr(char ***tab, char **str, char *cmp);
 int					int_ft_putchar(int c);
 void				debug();
 int					ft_put_fatal_error(char *str);
+void				ft_myexit(char	*str);
 #endif
