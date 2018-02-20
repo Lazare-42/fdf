@@ -13,13 +13,26 @@ static double x_radius = 0;
 static double y_radius = 0;
 static double z_radius = 0;
 
-double	*matrix_multiplication(double *tab)
+double	***matrix_multiplication(double ***tab, int *dimensions)
 {
-	X = (cy * (sz * Y + cz * X) - sy * Z);
-	Y = sx * (cy * Z + sy * (sz * Y + cz * X)) + cx * (cz * Y - sz * X);
-	Z = cx * (cy * Z + sy * (sz * Y + cz * X)) - sx * (cz * Y - sz * X);
-//	X /= Z;
-//	Y /= Z;
+	int i;
+	int j;
+
+	i = 0;
+	while (tab[i])
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			X = (cy * (sz * Y + cz * X) - sy * Z);
+			Y = sx * (cy * Z + sy * (sz * Y + cz * X)) + cx * (cz * Y - sz * X);
+			Z = cx * (cy * Z + sy * (sz * Y + cz * X)) - sx * (cz * Y - sz * X);
+			tab[i][j][0] = tab[i][j][0] * (X_SIZE / 3) / (dimensions[0]);
+			tab[i][j][1] = tab[i][j][1] * (Y_SIZE / 3) / (dimensions[1]);
+			j++;
+		}
+		i++;
+	}
 	return (tab);
 }
 
