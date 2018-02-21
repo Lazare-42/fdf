@@ -5,8 +5,15 @@
 # define Y_SIZE 1440
 # define KEY_LEFT 12
 # define KEY_RIGHT 13
+# define KEY_LEFT 12
+# define KEY_RIGHT 13
 # define KEY_DOWN 14
 # define KEY_UP 15
+
+
+# define ZOOM_IN 69
+# define ZOOM_OUT 75
+
 # define X_ROTATE_UP 126
 # define X_ROTATE_DOWN 125
 # define Y_ROTATE_UP 124
