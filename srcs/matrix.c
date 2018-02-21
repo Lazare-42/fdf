@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 14:32:13 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/21 16:18:46 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:23:53 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ double	***matrix_multiplication(double ***tab, int *dimensions)
 			cos_sinus[3] * (cos_sinus[5] * tab[i][j][1] + cos_sinus[4] *
 			tab[i][j][0])) - cos_sinus[1] * (cos_sinus[4] * tab[i][j][1] -
 			cos_sinus[5] * tab[i][j][0]);
-			tab[i][j][0] = tab[i][j][0] * (X_SIZE / 3) / (dimensions[0]);
-			tab[i][j][1] = tab[i][j][1] * (Y_SIZE / 3) / (dimensions[1]);
+			tab[i][j][0] = tab[i][j][0] * (X_SIZE) / (dimensions[0]);
+			tab[i][j][1] = tab[i][j][1] * (Y_SIZE) / (dimensions[1]);
 		}
 	}
 	return (tab);
