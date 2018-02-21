@@ -6,14 +6,14 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 10:15:14 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/20 10:16:13 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:15:50 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../libft/includes/libft.h"
 
-double	***create_temp_tab(int	*dimensions, double ***tocopy)
+double	***create_temp_tab(int *dimensions, double ***tocopy)
 {
 	int		i;
 	int		j;
@@ -29,7 +29,7 @@ double	***create_temp_tab(int	*dimensions, double ***tocopy)
 		if (!(tab[i] = malloc(sizeof(double*) * (dimensions[0] + 1))))
 			return (NULL);
 		ft_memset(tab[i], 0, sizeof(double*) * (dimensions[0] + 1));
-		j  = -1;
+		j = -1;
 		while (++j < dimensions[0])
 		{
 			if (!(tab[i][j] = malloc(sizeof(double) * 3)))

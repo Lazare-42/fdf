@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 12:52:46 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/21 11:12:59 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:18:39 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include <stdlib.h>
 #include <dirent.h>
 
-static double		**converse_final(double **tab, char ***tmp, int y, int **dimensions)
+static double		**converse_final(double **tab, char ***tmp, int y,
+		int **dimensions)
 {
 	int				x;
 	int				i;
@@ -40,7 +41,8 @@ static double		**converse_final(double **tab, char ***tmp, int y, int **dimensio
 	return (tab);
 }
 
-static double		**ft_converse_string_to_double(double **tab, char *line, int y_size, int **dimensions)
+static double		**ft_converse_string_to_double(double **tab,
+		char *line, int y_size, int **dimensions)
 {
 	char			**tmp;
 	static double	nbr = 0;
@@ -53,7 +55,8 @@ static double		**ft_converse_string_to_double(double **tab, char *line, int y_si
 	nbr_len = ft_tabsize(tmp);
 	if (!nbr)
 		nbr = nbr_len;
-	if (nbr != nbr_len || (!(tab = (double**)malloc(sizeof(double*) * (nbr_len + 1)))))
+	if (nbr != nbr_len || (!(tab = (double**)malloc(sizeof(double*) *
+						(nbr_len + 1)))))
 	{
 		ft_putstr("Invalid argument format.\n");
 		ft_tabdel((void***)&tmp);
@@ -75,18 +78,17 @@ static double		***ft_parse_chartab(char ***asci_tab, int **dimensions)
 	if (!(tab = (double***)malloc(sizeof(double**) * (i + 1))))
 		return (NULL);
 	tab[i] = NULL;
-	i = 0;
+	i = -1;
 	(*dimensions)[1] = 0;
-	while ((*asci_tab)[i])
+	while ((*asci_tab)[++i])
 	{
-		if (!(tab[i] = ft_converse_string_to_double(tab[i], (*asci_tab)[i], y_size, dimensions)))
+		if (!(tab[i] = ft_converse_string_to_double(tab[i],
+						(*asci_tab)[i], y_size, dimensions)))
 		{
-			ft_memdel((void**)tab);
-			// Modify this memdel to really delete
+			ft_tabdel((void***)&tab);
 			return (NULL);
 		}
 		y_size--;
-		i++;
 	}
 	(*dimensions)[2] = i;
 	ft_tabdel((void***)asci_tab);
@@ -95,8 +97,8 @@ static double		***ft_parse_chartab(char ***asci_tab, int **dimensions)
 
 static double		***ft_parse_lines(double fd, int **dimensions)
 {
-	char	*tmp;
-	char	**map_asci_tab;
+	char		*tmp;
+	char		**map_asci_tab;
 	double		ret;
 
 	tmp = NULL;
@@ -119,7 +121,7 @@ static double		***ft_parse_lines(double fd, int **dimensions)
 double				***ft_parsing(char *arg, int **dimensions)
 {
 	double		fd;
-	DIR		*test_dir;
+	DIR			*test_dir;
 
 	fd = -1;
 	test_dir = NULL;
