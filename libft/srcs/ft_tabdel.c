@@ -6,14 +6,14 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 09:29:17 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/21 11:11:25 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/21 11:37:59 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 #include <stdlib.h>
 
-void	ft_tabdel(void	***str)
+void	ft_tabdel(void ***str)
 {
 	int i;
 
