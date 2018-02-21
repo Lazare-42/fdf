@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/27 10:58:52 by lazrossi          #+#    #+#             */
-/*   Updated: 2017/12/27 15:41:01 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/21 10:39:13 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**ft_tabdup_add_free(char ***tab, char **str, char tofree)
 	if (!(new_tab[i] = ft_strdup(*str)))
 		return (NULL);
 	if (*tab && (tofree == 'L' || tofree == 'B'))
-		ft_memdel((void**)*tab);
+		ft_tabdel((void***)tab);
 	if (*str && (tofree == 'R' || tofree == 'B'))
 		ft_memdel((void**)str);
 	return (new_tab);

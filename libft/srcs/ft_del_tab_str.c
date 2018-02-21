@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabdel.c                                        :+:      :+:    :+:   */
+/*   ft_del_tab_str.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/05 09:29:17 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/21 11:11:25 by lazrossi         ###   ########.fr       */
+/*   Created: 2018/02/21 10:46:17 by lazrossi          #+#    #+#             */
+/*   Updated: 2018/02/21 10:47:57 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
-#include <stdlib.h>
 
-void	ft_tabdel(void	***str)
+void	ft_del_tab_str(void	***tab, void	**str)
 {
-	int i;
-
-	i = 0;
-	while ((*str)[i])
-	{
-		ft_memdel(&(*str)[i]);
-		i++;
-	}
-	free(*str);
+	ft_tabdel(tab);
+	ft_memdel(str);
 }

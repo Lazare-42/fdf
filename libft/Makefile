@@ -6,7 +6,7 @@
 #    By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/27 14:56:05 by lazrossi          #+#    #+#              #
-#    Updated: 2018/02/20 15:05:37 by lazrossi         ###   ########.fr        #
+#    Updated: 2018/02/21 10:51:27 by lazrossi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,6 +97,7 @@ SRC = ft_atoi.c \
 	  ft_debug.c \
 	  ft_put_fatal_error.c \
 	  ft_myexit.c \
+	  ft_del_tab_str.c \
 
 ODIR = bin
 

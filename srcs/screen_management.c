@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 10:05:04 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/20 17:39:56 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/21 10:37:08 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,6 @@ void	print_handler(double ***tabtab, int print, int **screen, int *dimensions)
 	else
 		put_to_screen_string(tab, screen, 0, dimensions);
 	while (tab[++i])
-		ft_tabdel((void**)tab);
+		ft_tabdel((void***)&tab);
 	//ft_memdel((void**)&tab[i][j]);
 }

@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 12:07:08 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/18 10:27:23 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/21 11:12:55 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int		main(int ac, char **av)
 	}
 	else 
 		return(ft_put_fatal_error(("Pass a file to FDF to launch program")));
+	sleep(10);
+	exit(0);
 
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, X_SIZE, Y_SIZE, "FDF");

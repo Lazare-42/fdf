@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 15:27:37 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/20 10:33:56 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/21 10:48:25 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int					get_next_line(const int fd, char **line, char tofind);
 int					ft_advance_str_for_quotes(char *str, int i);
 char				*ft_strdup_to_quote(char *src, char *dst);
 char				*ft_make_blocks_for_quotes(char *str, int *i);
-void				ft_tabdel(void	**str);
+void				ft_tabdel(void	***str);
 char				**ft_tabdup(char **str, int size);
 int					ft_tabsize(char **tab);
 void				ft_putwhites(int i);
@@ -111,4 +111,5 @@ int					int_ft_putchar(int c);
 void				debug();
 int					ft_put_fatal_error(char *str);
 void				ft_myexit(char	*str);
+void				ft_del_tab_str(void	***tab, void	**str);
 #endif
