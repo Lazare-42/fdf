@@ -1,0 +1,25 @@
+Norme: ./norm.txt
+Warning: Not a valid file
+Norme: ./check_if_input.c
+Norme: ./center_matrix.c
+Norme: ./camera_move.c
+Error (line 63): line has 88 characters
+Error (line 64): line has 90 characters
+Error (line 65): line has 90 characters
+Error (line 66): line has 91 characters
+Norme: ./main.c
+Norme: ./parsing.c
+Norme: ./screen_management.c
+Error (line 17): multiple empty lines
+Error (line 18): declarations in put_screen_str are bad aligned
+Error (line 18): bad spacing before put_screen_str
+Error (line 32): declarations in draw_line are bad aligned
+Error (line 32): function draw_line has 52 lines
+Error (line 32, col 0): draw_line has 7 variables
+Error (line 72, col 2): missing space after while
+Error (line 88): declarations in put_to_screen_string are bad aligned
+Error (line 96): Empty line
+Error (line 98, col 5): missing space around =
+Norme: ./tab_operations.c
+Norme: ./static_variables.c
+Norme: ./matrix.c
