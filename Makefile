@@ -7,6 +7,8 @@ SOURCES = camera_move.c \
 		  screen_management.c \
 		  center_matrix.c \
 		  tab_operations.c \
+		  static_variables.c \
+		  check_if_input.c \
 
 
 LIBDIR = libft

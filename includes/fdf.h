@@ -1,15 +1,6 @@
 #ifndef FDF_H
 # define FDF_H
 
-# define X tab[i][j][0]
-# define Y tab[i][j][1]
-# define Z tab[i][j][2]
-# define cx g_cos_sinus[0]
-# define sx g_cos_sinus[1]
-# define cy g_cos_sinus[2]
-# define sy g_cos_sinus[3]
-# define cz g_cos_sinus[4]
-# define sz g_cos_sinus[5]
 # define X_SIZE 2560
 # define Y_SIZE 1440
 # define KEY_LEFT 12
@@ -44,5 +35,11 @@ double				***scale(double ***tab, int max_x, int max_y, int max_z);
 double				***matrix_multiplication(double ***tab, int *dimensions);
 double				***center_matrix(double ***tab, int *field_size);
 double				***create_temp_tab(int	*dimensions, double ***tocopy);
+int					redraw(int keycode, int *dimensions);
+double				*set_get_cos_sinus(double *new_cos_sinus);
+double				*set_get_radiuses(double *new_radiuses);
+double				*set_get_pixel(double *new_point);
+double				***store_tab(double ***tabtab);
+int					check_if_input(int input_operation);
 
 #endif

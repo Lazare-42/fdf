@@ -1,14 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   screen_management.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/21 16:20:25 by lazrossi          #+#    #+#             */
+/*   Updated: 2018/02/21 16:56:20 by lazrossi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fdf.h"
 #include "../libft/includes/libft.h"
 #include <stdlib.h>
 
-static	double point[3];
 
 static void	put_screen_str(int **screen, int print)
 {
 	int			where_to;
 	static	int	max_screen_pixel = X_SIZE * Y_SIZE;
+	double	*point;
 
+	point = set_get_pixel(NULL);
 	where_to = 0;
 	where_to = (int)point[0] - (int)point[1] * X_SIZE;
 	where_to += (X_SIZE / 2) + (Y_SIZE / 2) * X_SIZE;
@@ -16,9 +29,7 @@ static void	put_screen_str(int **screen, int print)
 		(*screen)[where_to] = (print) ? 0xFF400 : 0;
 }
 
-#include <stdio.h>
-
-void	draw_line(double *from, double *to, int **screen, int print)
+void		draw_line(double *from, double *to, int **screen, int print)
 {
 	int dx;
 	int dy;
@@ -26,7 +37,9 @@ void	draw_line(double *from, double *to, int **screen, int print)
 	int xinc;
 	int yinc;
 	int cumul;
+	double	*point;
 
+	point = set_get_pixel(NULL);
 	point[0] = (int)from[0];
 	point[1] = (int)from[1];
 	dx = (int)(to[0] - from[0]);
@@ -69,12 +82,17 @@ void	draw_line(double *from, double *to, int **screen, int print)
 			i++;
 		}
 	}
+	set_get_pixel(point);
 }
 
-static void	put_to_screen_string(double ***tab, int **screen, int print, int *dimensions)
+static void	put_to_screen_string(double ***tab, int **screen,
+		int print, int *dimensions)
 {
 	int			i;
 	int			j;
+	double	*point;
+
+	point = set_get_pixel(NULL);
 
 	i = -1;
 	tab	= matrix_multiplication(tab, dimensions);
@@ -92,9 +110,11 @@ static void	put_to_screen_string(double ***tab, int **screen, int print, int *di
 			put_screen_str(screen, print);
 		}
 	}
+	set_get_pixel(point);
 }
 
-void	print_handler(double ***tabtab, int print, int **screen, int *dimensions)
+void		print_handler(double ***tabtab,
+		int print, int **screen, int *dimensions)
 {
 	int		i;
 	double	***tab;
