@@ -3,12 +3,11 @@
 
 # define X_SIZE 2560
 # define Y_SIZE 1440
-# define KEY_LEFT 12
-# define KEY_RIGHT 13
-# define KEY_LEFT 12
-# define KEY_RIGHT 13
+
+# define KEY_LEFT 1
+# define KEY_RIGHT 3
 # define KEY_DOWN 14
-# define KEY_UP 15
+# define KEY_UP 2
 
 
 # define ZOOM_IN 8
@@ -40,7 +39,6 @@ double				***first_camera_move(double ***tab, double **cos_sinus, int *camera_se
 void				print_handler(double ***tab, int print, int **screen, int *dimensions);
 double				***scale(double ***tab, int max_x, int max_y, int max_z);
 double				***matrix_multiplication(double ***tab, int *dimensions);
-double				***center_matrix(double ***tab, int *field_size);
 double				***create_temp_tab(int	*dimensions, double ***tocopy);
 int					redraw(int keycode, int *dimensions);
 double				*set_get_cos_sinus(double *new_cos_sinus);
@@ -49,6 +47,7 @@ double				*set_get_pixel(double *new_point);
 double				set_get_zoom_x(int zoom);
 double				set_get_zoom_y(int zoom);
 void				zoom_handler(int input_operation);
+int					location_handler(int input_operation);
 double				***store_tab(double ***tabtab);
 int					check_if_input(int input_operation);
 

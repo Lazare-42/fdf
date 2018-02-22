@@ -5,7 +5,6 @@ SOURCES = camera_move.c \
 		  matrix.c \
 		  parsing.c \
 		  screen_management.c \
-		  center_matrix.c \
 		  tab_operations.c \
 		  static_variables.c \
 		  check_if_input.c \

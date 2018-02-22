@@ -109,6 +109,26 @@ void	zoom_handler(int input_operation)
 	set_get_zoom_y(1);
 }
 
+int		location_handler(int input_operation)
+{
+	static int width = X_SIZE / 2;
+	static int height = Y_SIZE / 2 * X_SIZE;
+	static int camera_center = X_SIZE / 2 + Y_SIZE / 2 * X_SIZE;
+		
+	if (!input_operation)
+		return (camera_center);
+	if (input_operation == KEY_LEFT)
+		width -= X_SIZE / 20;
+	if (input_operation == KEY_RIGHT)
+		width += X_SIZE / 20;
+	if (input_operation == KEY_UP)
+		height += Y_SIZE / 20 * X_SIZE;
+	if (input_operation == KEY_DOWN)
+		height -= Y_SIZE / 20 * X_SIZE;
+	camera_center = width + height;
+	return (camera_center);
+}
+
 double	***store_tab(double ***tabtab)
 {
 	static double ***tab = NULL;

@@ -139,12 +139,7 @@ double	***table_transform_handler(double ***tab, int input_operation)
 	}
 	else if (input_operation == KEY_LEFT || input_operation == KEY_RIGHT ||
 			input_operation == KEY_DOWN || input_operation == KEY_UP)
-	{
-		tab = camera_move(tab, input_operation, &cos_sinus);
-		radiuses[0] = acos(cos_sinus[0]);
-		radiuses[1] = acos(cos_sinus[2]);
-		radiuses[2] = acos(cos_sinus[4]);
-	}
+		location_handler(input_operation);
 	else if (input_operation == ZOOM_IN || input_operation == ZOOM_OUT)
 		zoom_handler(input_operation);
 	else

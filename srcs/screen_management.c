@@ -24,7 +24,8 @@ static void	put_screen_str(int **screen, int print)
 	point = set_get_pixel(NULL);
 	where_to = 0;
 	where_to = (int)point[0] - (int)point[1] * X_SIZE;
-	where_to += (X_SIZE / 2) + (Y_SIZE / 2) * X_SIZE;
+	where_to += location_handler(0);
+	// modifier ci dessus pour changer le centrage de l'ecran
 	if (where_to >= 0 && where_to <= max_screen_pixel)
 		(*screen)[where_to] = (print) ? 0xFF400 : 0;
 }

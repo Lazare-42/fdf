@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include "../includes/fdf.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static	t_mlx	*my_mlx_init(void)
 {
@@ -42,6 +43,7 @@ static int		draw(int keycode, int *dimensions)
 		mlx = my_mlx_init();
 	if (keycode == 53)
 		exit(0);
+	printf("%d\n", keycode);
 	if (keycode)
 	{
 		print_handler(store_tab(NULL), 0, &(mlx->screen_data), dimensions);
