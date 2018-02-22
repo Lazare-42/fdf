@@ -11,8 +11,8 @@
 # define KEY_UP 15
 
 
-# define ZOOM_IN 69
-# define ZOOM_OUT 75
+# define ZOOM_IN 8
+# define ZOOM_OUT 9
 
 # define X_ROTATE_UP 126
 # define X_ROTATE_DOWN 125
@@ -46,6 +46,9 @@ int					redraw(int keycode, int *dimensions);
 double				*set_get_cos_sinus(double *new_cos_sinus);
 double				*set_get_radiuses(double *new_radiuses);
 double				*set_get_pixel(double *new_point);
+double				set_get_zoom_x(int zoom);
+double				set_get_zoom_y(int zoom);
+void				zoom_handler(int input_operation);
 double				***store_tab(double ***tabtab);
 int					check_if_input(int input_operation);
 

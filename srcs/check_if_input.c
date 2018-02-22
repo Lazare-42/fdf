@@ -19,7 +19,8 @@ int		check_if_input(int input_operation)
 		input_operation == Z_ROTATE_DOWN || input_operation == Z_ROTATE_UP ||
 		input_operation == KEY_LEFT || input_operation == KEY_RIGHT ||
 		input_operation == KEY_DOWN || input_operation == KEY_UP ||
-		input_operation == CAMERA_SETBACK)
+		input_operation == CAMERA_SETBACK || input_operation == ZOOM_IN ||
+		input_operation == ZOOM_OUT)
 		return (1);
 	else
 		return (0);

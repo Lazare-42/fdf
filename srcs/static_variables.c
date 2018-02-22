@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "../includes/fdf.h"
+#include "../libft/includes/libft.h"
 
 double	*set_get_pixel(double *new_point)
 {
@@ -61,6 +63,50 @@ double	*set_get_radiuses(double *new_radiuses)
 	else if (new_radiuses)
 		radiuses = new_radiuses;
 	return (radiuses);
+}
+
+double	set_get_zoom_x(int zoom)
+{
+	static double	zoom_x = 0;
+	static double	zoom_factor = 1;	
+	static double	screen_adjust = (X_SIZE / 3);	
+
+	if (!zoom_x)
+		zoom_x = screen_adjust;
+	if (zoom)
+	{
+		zoom_factor += (zoom < 0) ? -0.05 : +0.05;
+		zoom_x = screen_adjust * zoom_factor;
+	}
+	return (zoom_x);
+}
+
+double	set_get_zoom_y(int zoom)
+{
+	static double	zoom_y = 0;
+	static double	zoom_factor = 1;	
+	static double	screen_adjust = (Y_SIZE / 3);	
+
+	if (!zoom_y)
+		zoom_y = screen_adjust;
+	if (zoom)
+	{
+		zoom_factor += (zoom < 0) ? -0.05 : +0.05;
+		zoom_y = screen_adjust * zoom_factor;
+	}
+	return (zoom_y);
+}
+
+void	zoom_handler(int input_operation)
+{
+	if (input_operation == ZOOM_IN)
+	{
+		set_get_zoom_x(-1);
+		set_get_zoom_y(-1);
+		return ;
+	}
+	set_get_zoom_x(1);
+	set_get_zoom_y(1);
 }
 
 double	***store_tab(double ***tabtab)

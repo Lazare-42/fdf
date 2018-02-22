@@ -14,6 +14,7 @@
 #include "../libft/includes/libft.h"
 #include <stdlib.h>
 #include <math.h>
+#include <stdio.h>
 
 double	***matrix_multiplication(double ***tab, int *dimensions)
 {
@@ -23,6 +24,8 @@ double	***matrix_multiplication(double ***tab, int *dimensions)
 
 	i = -1;
 	cos_sinus = set_get_cos_sinus(NULL);
+//	printf("%g\n", set_get_zoom_x(0));
+//	printf("%g\n", set_get_zoom_y(0));
 	while (tab[++i])
 	{
 		j = -1;
@@ -37,8 +40,10 @@ double	***matrix_multiplication(double ***tab, int *dimensions)
 			cos_sinus[3] * (cos_sinus[5] * tab[i][j][1] + cos_sinus[4] *
 			tab[i][j][0])) - cos_sinus[1] * (cos_sinus[4] * tab[i][j][1] -
 			cos_sinus[5] * tab[i][j][0]);
-			tab[i][j][0] = tab[i][j][0] * (X_SIZE / 3) / (dimensions[0]);
-			tab[i][j][1] = tab[i][j][1] * (Y_SIZE / 3) / (dimensions[1]);
+
+			tab[i][j][0] = tab[i][j][0] * (set_get_zoom_x(0)) / (dimensions[0]);
+			tab[i][j][1] = tab[i][j][1] * (set_get_zoom_y(0)) / (dimensions[1]);
+
 		}
 	}
 	return (tab);
@@ -140,6 +145,8 @@ double	***table_transform_handler(double ***tab, int input_operation)
 		radiuses[1] = acos(cos_sinus[2]);
 		radiuses[2] = acos(cos_sinus[4]);
 	}
+	else if (input_operation == ZOOM_IN || input_operation == ZOOM_OUT)
+		zoom_handler(input_operation);
 	else
 		modify_radiuses(input_operation);
 	set_get_radiuses(radiuses);
