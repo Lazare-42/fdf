@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:20:25 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/21 16:56:20 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/22 12:43:55 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,76 +14,18 @@
 #include "../libft/includes/libft.h"
 #include <stdlib.h>
 
-
-static void	put_screen_str(int **screen, int print)
+void		put_screen_str(int **screen, int print)
 {
 	int			where_to;
 	static	int	max_screen_pixel = X_SIZE * Y_SIZE;
-	double	*point;
+	double		*point;
 
 	point = set_get_pixel(NULL);
 	where_to = 0;
 	where_to = (int)point[0] - (int)point[1] * X_SIZE;
 	where_to += location_handler(0);
-	// modifier ci dessus pour changer le centrage de l'ecran
 	if (where_to >= 0 && where_to <= max_screen_pixel)
 		(*screen)[where_to] = (print) ? 0xFF400 : 0;
-}
-
-void		draw_line(double *from, double *to, int **screen, int print)
-{
-	int dx;
-	int dy;
-	int i;
-	int xinc;
-	int yinc;
-	int cumul;
-	double	*point;
-
-	point = set_get_pixel(NULL);
-	point[0] = (int)from[0];
-	point[1] = (int)from[1];
-	dx = (int)(to[0] - from[0]);
-	dy = (int)(to[1] - from[1]);
-	xinc = (dx > 0) ? 1 : -1;
-	yinc = (dy > 0) ? 1 : -1;
-	dx = abs(dx);
-	dy = abs(dy);
-	put_screen_str(screen, print);
-	i = 1;
-	if (dx > dy)
-	{
-		cumul = dx / 2;
-		while (i <= dx)
-		{
-			point[0] += xinc;
-			cumul += dy;
-			if (cumul >= dx)
-			{
-				cumul -= dx;
-				point[1] += yinc;
-			}
-			put_screen_str(screen, print);
-			i++;
-		}
-	}
-	else
-	{
-		cumul = dy / 2;
-		while(i <= dy)
-		{
-			point[1] += yinc;
-			cumul += dx;
-			if (cumul >= dy)
-			{
-				cumul -= dy;
-				point[0] += xinc;
-			}
-			put_screen_str(screen, print);
-			i++;
-		}
-	}
-	set_get_pixel(point);
 }
 
 static void	put_to_screen_string(double ***tab, int **screen,
@@ -91,12 +33,11 @@ static void	put_to_screen_string(double ***tab, int **screen,
 {
 	int			i;
 	int			j;
-	double	*point;
+	double		*point;
 
 	point = set_get_pixel(NULL);
-
 	i = -1;
-	tab	= matrix_multiplication(tab, dimensions);
+	tab = matrix_multiplication(tab, dimensions);
 	while (tab[++i])
 	{
 		j = -1;

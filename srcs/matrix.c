@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 14:32:13 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/21 16:18:46 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/22 12:47:32 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ double	***matrix_multiplication(double ***tab, int *dimensions)
 
 	i = -1;
 	cos_sinus = set_get_cos_sinus(NULL);
-//	printf("%g\n", set_get_zoom_x(0));
-//	printf("%g\n", set_get_zoom_y(0));
 	while (tab[++i])
 	{
 		j = -1;
@@ -37,13 +35,10 @@ double	***matrix_multiplication(double ***tab, int *dimensions)
 	cos_sinus[3] * (cos_sinus[5] * tab[i][j][1] + cos_sinus[4] * tab[i][j][0]
 )) + cos_sinus[0] * (cos_sinus[4] * tab[i][j][1] - cos_sinus[5] * tab[i][j][0]);
 			tab[i][j][2] = cos_sinus[0] * (cos_sinus[2] * tab[i][j][2] +
-			cos_sinus[3] * (cos_sinus[5] * tab[i][j][1] + cos_sinus[4] *
-			tab[i][j][0])) - cos_sinus[1] * (cos_sinus[4] * tab[i][j][1] -
-			cos_sinus[5] * tab[i][j][0]);
-
+cos_sinus[3] * (cos_sinus[5] * tab[i][j][1] + cos_sinus[4] * tab[i][j][0])) -
+	cos_sinus[1] * (cos_sinus[4] * tab[i][j][1] - cos_sinus[5] * tab[i][j][0]);
 			tab[i][j][0] = tab[i][j][0] * (set_get_zoom_x(0)) / (dimensions[0]);
 			tab[i][j][1] = tab[i][j][1] * (set_get_zoom_y(0)) / (dimensions[1]);
-
 		}
 	}
 	return (tab);

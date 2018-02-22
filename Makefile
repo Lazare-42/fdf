@@ -8,6 +8,9 @@ SOURCES = camera_move.c \
 		  tab_operations.c \
 		  static_variables.c \
 		  check_if_input.c \
+		  center_matrix.c \
+		  draw_line.c \
+		  zoom_size.c \
 
 
 LIBDIR = libft

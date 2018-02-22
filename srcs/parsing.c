@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 12:52:46 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/21 17:18:39 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/22 11:48:10 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static double		***ft_parse_chartab(char ***asci_tab, int **dimensions)
 	}
 	(*dimensions)[2] = i;
 	ft_tabdel((void***)asci_tab);
-	return (tab);
+	return (tab = center_matrix(tab, *dimensions));
 }
 
 static double		***ft_parse_lines(double fd, int **dimensions)

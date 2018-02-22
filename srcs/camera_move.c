@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 11:41:29 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/21 18:56:34 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/22 11:58:41 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,14 @@ double		***camera_move(double ***tab, int input_operation,
 		j = -1;
 		while (tab[i][++j])
 		{
-			tab[i][j][2] = (input_operation == KEY_UP) ? tab[i][j][2]-- : tab[i][j][2];
-			tab[i][j][2] = (input_operation == KEY_DOWN) ? tab[i][j][2]++ : tab[i][j][2];
-			tab[i][j][1] = (input_operation == KEY_LEFT) ? tab[i][j][1]-- : tab[i][j][1];
-			tab[i][j][1] = (input_operation == KEY_RIGHT) ? tab[i][j][1]++ : tab[i][j][1];
+			tab[i][j][2] = (input_operation ==
+					KEY_UP) ? tab[i][j][2]-- : tab[i][j][2];
+			tab[i][j][2] = (input_operation ==
+					KEY_DOWN) ? tab[i][j][2]++ : tab[i][j][2];
+			tab[i][j][1] = (input_operation ==
+					KEY_LEFT) ? tab[i][j][1]-- : tab[i][j][1];
+			tab[i][j][1] = (input_operation ==
+					KEY_RIGHT) ? tab[i][j][1]++ : tab[i][j][1];
 		}
 	}
 	modify_sin_cos(g_cos_sinus, input_operation);

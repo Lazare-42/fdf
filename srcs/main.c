@@ -6,7 +6,7 @@
 /*   By: lazrossi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 12:07:08 by lazrossi          #+#    #+#             */
-/*   Updated: 2018/02/21 16:02:43 by lazrossi         ###   ########.fr       */
+/*   Updated: 2018/02/22 11:49:38 by lazrossi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static int		draw(int keycode, int *dimensions)
 		mlx = my_mlx_init();
 	if (keycode == 53)
 		exit(0);
-	printf("%d\n", keycode);
 	if (keycode)
 	{
 		print_handler(store_tab(NULL), 0, &(mlx->screen_data), dimensions);
